@@ -1,8 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import prisma from '../lib/prisma'
 
-export default function Home() {
+export default function Home({data}) {
+
+  console.log(data)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -69,3 +73,14 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getStaticProps() {
+  const test = await prisma.post.findMany({})
+
+  return {
+    props: {
+      data: test
+    },
+    revalidate: 10
+  }
+} 

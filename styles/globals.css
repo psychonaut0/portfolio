@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+  cursor: none !important
+}
+
 html,
 body {
   padding: 0;
@@ -15,9 +20,7 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
+
 
 @media (prefers-color-scheme: dark) {
   html {

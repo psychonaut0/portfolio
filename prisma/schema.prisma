@@ -28,3 +28,8 @@ model User {
   posts         Post[]
   @@map(name: "users")
 }
+
+model Group {
+  id String @default(cuid()) @id
+  
+}

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,26 +7,79 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        String     @default(cuid()) @id
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
+model Page {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  tabs        Tab[]
 }
 
-model User {
-  id            String       @default(cuid()) @id
-  name          String?
-  email         String?   @unique
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  posts         Post[]
-  @@map(name: "users")
+model Tab {
+  id          String          @id @default(cuid())
+  title       String
+  description String
+  page        Page            @relation(fields: [pageId], references: [id])
+  pageId      String
+  sections    SectionsOnTab[]
 }
 
-model Group {
-  id String @default(cuid()) @id
-  
+model Section {
+  id               String          @id @default(cuid())
+  menuTitle        String
+  title            String
+  content          String
+  type             SectionType     @default(content)
+  sectionCards     SectionCards?   @relation(fields: [sectionCardsId], references: [id])
+  sectionCardsId   String?         @unique
+  sectionContent   SectionContent? @relation(fields: [sectionContentId], references: [id])
+  sectionContentId String?         @unique
+  sectionHero      SectionHero?    @relation(fields: [sectionHeroId], references: [id])
+  sectionHeroId    String?         @unique
+  tabs             SectionsOnTab[]
+}
+
+model SectionsOnTab {
+  tab       Tab     @relation(fields: [tabId], references: [id])
+  tabId     String  @unique
+  section   Section @relation(fields: [sectionId], references: [id])
+  sectionId String  @unique
+
+  @@id([tabId, sectionId])
+}
+
+model SectionCards {
+  id      String    @id @default(cuid())
+  type    String
+  columns Int
+  cards   Card[]
+  Section Section?
+}
+
+model SectionHero {
+  id              String    @id @default(cuid())
+  backgroundImage String
+  Section         Section?
+}
+
+model SectionContent {
+  id      String    @id @default(cuid())
+  image   String
+  Section Section?
+}
+
+model Card {
+  id             String       @id @default(cuid())
+  title          String
+  content        String
+  image          String
+  imageId        String
+  sectionCards   SectionCards @relation(fields: [sectionCardsId], references: [id])
+  sectionCardsId String
+}
+
+
+enum SectionType {
+  cards
+  content
+  hero
 }

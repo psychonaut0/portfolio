@@ -19,7 +19,7 @@ export default function Layout({ children }) {
     })
 
     e.path.forEach(el => {
-      if (el.tagName === "A") {
+      if (el.tagName === "A" && el.href !== "") {
         setOnLink(true)
       }
     })
@@ -39,13 +39,12 @@ export default function Layout({ children }) {
     default: {
       x: mousePosition.x - 20,
       y: mousePosition.y - 20,
-      scale: onLink ? 1.2 : 0.6,
-      backgroundColor: onLink ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0)',
+      scale: onLink ? 1 : 0.6,
       transition: {
         type: "spring",
         mass: 0.1,
         bounce: 1,
-        damping: 3
+        damping: 4
       }
     }
   }
@@ -57,19 +56,17 @@ export default function Layout({ children }) {
         className="w-14 h-14 flex justify-center items-center pointer-events-none top-0 left-0 border-2 border-white fixed rounded-full"
         initial={false}
         variants={variants}
-        animate={"default"}
-
-      >
+        animate={"default"}>
         {
           onLink ?
-            <div className="text-black text-sm" >
-              Visit
-            </div>
+            <div className="w-4 h-4 bg- text-sm bg-white rounded-full" />
             :
             null
         }
       </motion.div>
+      <div className="flex w-full min-h-screen justify-center items-center">
       {children}
+      </div>
     </div>
   )
 }

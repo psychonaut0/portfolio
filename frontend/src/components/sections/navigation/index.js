@@ -1,4 +1,4 @@
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion"
+import { AnimatePresence, AnimateSharedLayout, LayoutGroup, motion } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect } from "react"

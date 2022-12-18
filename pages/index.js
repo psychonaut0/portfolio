@@ -1,4 +1,3 @@
-import prisma from '../lib/prisma'
 import Layout from '../src/components/layout'
 
 export default function Home({ data }) {
@@ -13,11 +12,10 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-  const test = await prisma.post.findMany({})
 
   return {
     props: {
-      data: test
+      data: "lol"
     },
     revalidate: 10
   }

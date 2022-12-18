@@ -9,6 +9,11 @@ node_modules
 .env
 .env*.local
 
+# testing
+coverage
+testApp
+
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -19,10 +24,11 @@ yarn-error.log*
 .DS_Store
 *.pem
 
-# Frontent
+#############################
 
-## testing
-/frontend/coverage
+############
+# Frontent #
+############
 
 ## next.js
 /frontend/.next/
@@ -35,11 +41,80 @@ yarn-error.log*
 /frontend/build
 
 
-
-
-
-
-
 # typescript
 /frontend/*.tsbuildinfo
 /frontend/next-env.d.ts
+
+#############################
+
+############
+# Backend  #
+############
+
+## Strapi
+/backend/license.txt
+/backend/exports
+/backend/*.cache
+/backend/dist
+/backend/build
+/backend/.strapi-updater.json
+
+## Misc
+/backend/*#
+/backend/ssl
+/backend/.idea
+/backend/nbproject
+/backend/public/uploads/*
+/backend/!public/uploads/.gitkeep
+
+
+## Logs and databases
+/backend/.tmp
+/backend/*.log
+/backend/*.sql
+/backend/*.sqlite
+/backend/*.sqlite3
+
+## Packages
+/backend/*.7z
+/backend/*.csv
+/backend/*.dat
+/backend/*.dmg
+/backend/*.gz
+/backend/*.iso
+/backend/*.jar
+/backend/*.rar
+/backend/*.tar
+/backend/*.zip
+/backend/*.com
+/backend/*.class
+/backend/*.dll
+/backend/*.exe
+/backend/*.o
+/backend/*.seed
+/backend/*.so
+/backend/*.swo
+/backend/*.swp
+/backend/*.swn
+/backend/*.swm
+/backend/*.out
+/backend/*.pid
+
+
+## OS Files
+/backend/.DS_Store
+/backend/.AppleDouble
+/backend/.LSOverride
+/backend/Icon
+/backend/.Spotlight-V100
+/backend/.Trashes
+/backend/._*
+/backend/*~
+/backend/Thumbs.db
+/backend/ehthumbs.db
+/backend/Desktop.ini
+/backend/$RECYCLE.BIN/
+/backend/*.cab
+/backend/*.msi
+/backend/*.msm
+/backend/*.msp

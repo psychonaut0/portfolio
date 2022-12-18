@@ -1,0 +1,16 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "My personal portfolio.",
+  "repository": "git@github.com:psychonaut0/portfolio.git",
+  "author": "psychonaut <checco0002@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "ins": "concurrently \"yarn install\" \"cd ./backend && yarn install \" \"cd ./frontend && yarn install \"",
+    "dev": "concurrently \"cd ./backend && yarn dev \" \"cd ./frontend && yarn dev \""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

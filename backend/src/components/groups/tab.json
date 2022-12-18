@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_groups_tabs",
+  "info": {
+    "displayName": "tab",
+    "icon": "table",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "section": {
+      "displayName": "Section",
+      "type": "component",
+      "repeatable": true,
+      "component": "groups.section"
+    }
+  }
+}

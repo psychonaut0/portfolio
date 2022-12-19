@@ -26,7 +26,6 @@ export default function Cursor() {
       })
     }
 
-    console.log(x.get())
     window.addEventListener('mousemove', handleMouseMove)
 
     return () => {

@@ -1,4 +1,4 @@
-import { AnimatePresence, AnimateSharedLayout, LayoutGroup, motion } from "framer-motion"
+import { LayoutGroup, motion } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
@@ -27,20 +27,20 @@ export default function Navigation({ data }) {
   }, [router.events, data])
 
   return (
-    <div className="fixed bottom-0 flex z-50 space-x-20 py-10">
+    <div className="fixed bottom-0 flex z-50 space-x-14 py-6">
       <LayoutGroup
         id="navigation-menu"
       >
         {
           data.map((element, i) => {
-            return <Link passHref className={`${activePath === i ? 'text-orange-400' : ''} transition-all flex flex-col items-center font-bold text-xl uppercase tracking-widest hover:text-orange-400`} href={element.path} key={i}>
-              <p className="py-1">
+            return <Link passHref className={`${activePath === i ? 'text-orange-400' : ''} font-light transition-all flex flex-col items-center text-lg uppercase tracking-wider hover:text-orange-400`} href={element.path} key={i}>
+              <p className="py-2">
                 {element.title}
               </p>
                 {
                   activePath === i &&
                   <motion.div layoutId={'underline'} 
-                  className="w-[110%] rounded-full h-[2px] bg-orange-400" 
+                  className="w-[120%] rounded-full h-[1px] bg-orange-400" 
                   transition={{
                     type: "spring"
                   }}/>

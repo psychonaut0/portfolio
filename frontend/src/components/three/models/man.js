@@ -1,9 +1,8 @@
-import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { motion } from "framer-motion-3d"
 
 
-export function Model(props) {
+export function ManModel(props) {
 
   
 
@@ -22,6 +21,6 @@ export function Model(props) {
       <mesh name="Wolf3D_Beard" geometry={nodes.Wolf3D_Beard.geometry} material={materials['Stone.002']} morphTargetDictionary={nodes.Wolf3D_Beard.morphTargetDictionary} morphTargetInfluences={nodes.Wolf3D_Beard.morphTargetInfluences} position={[0.29, -2.49, 0.53]} rotation={[-0.05, 0.08, 0.1]} scale={1.73} />
     </motion.group>
   )
-}8
+}
 
 useGLTF.preload('http://localhost:3000/model.glb')

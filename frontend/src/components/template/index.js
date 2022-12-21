@@ -28,9 +28,6 @@ export default function Template() {
       router.events.off("hashChangeStart", onHashChangeStart)
     }
   }, [router.events])
-  
-  console.log('activePath', activePath)
-
 
   const options = {
     '#works': '-translate-x-[100vw]',

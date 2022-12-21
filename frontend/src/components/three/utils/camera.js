@@ -46,7 +46,7 @@ export default function Camera({ mouseX, mouseY, ...props }) {
     <motion.perspectiveCamera
       ref={cameraRef}
       fov={30}
-      position={[cameraX, cameraY, 1.4]}
+      position={[-0.42, 0, 1.4]}
       rotation={[0, 0, 0]}
     />
   );

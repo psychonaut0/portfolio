@@ -4,7 +4,6 @@ import Template from '../src/components/template'
 
 export default function Home({ data }) {
 
-  console.log(data)
 
   return (
     <Layout data={data}>

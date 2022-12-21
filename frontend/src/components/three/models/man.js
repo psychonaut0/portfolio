@@ -5,15 +5,9 @@ import { motion } from "framer-motion-3d"
 
 export function ManModel({mouseX, mouseY}) {
 
-  
-
   const { nodes, materials } = useGLTF('http://localhost:3000/model.glb')
 
   
-
-
-  console.log(materials)
-
   return (
     <motion.group rotation={[0.2, -1.3, 0.01]} position={[0.6,-0.40,3.95]} animate={{rotateY:-1, z:3.85}} transition={{repeat:"Infinity", repeatType:"reverse", duration: 18}}  dispose={null}>
       <mesh geometry={nodes.Wolf3D_Hair.geometry} material={materials['Stone.002']} position={[0.29, -2.49, 0.53]} rotation={[-0.05, 0.08, 0.1]} scale={1.73} />

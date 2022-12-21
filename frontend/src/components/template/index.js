@@ -3,6 +3,8 @@ import useMeasure from "react-use-measure";
 import HomeCanvas from "../three/canvas/home";
 import SphereCanvas from "../three/canvas/sphere";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Template() {
 
@@ -11,7 +13,30 @@ export default function Template() {
 
   const [ref, bounds] = useMeasure({ scroll: false });
 
+  const router = useRouter()
+  const [activePath, setactivePath] = useState('')
 
+  useEffect(() => {
+
+    const onHashChangeStart = (url) => {
+      setactivePath(url.replace('/',''))
+    }
+
+    router.events.on("hashChangeStart", onHashChangeStart)
+    
+    return () => {
+      router.events.off("hashChangeStart", onHashChangeStart)
+    }
+  }, [router.events])
+  
+  console.log('activePath', activePath)
+
+
+  const options = {
+    '#works': '-translate-x-[100vw]',
+    '#home': 'translate-x-[0vw]',
+    '#about': 'translate-x-[100vw]'
+  }
 
 
   return (
@@ -19,9 +44,9 @@ export default function Template() {
       mouseX.set(e.clientX - bounds.x - bounds.width / 2);
       mouseY.set(e.clientY - bounds.y - bounds.height / 2);
     }}
-      className="w-[300vw] translate-x-[0vw] ease-in-out duration-[3000ms] transition-all h-full flex justify-center items-center relative">
-      <div className="w-[32rem] h-[32rem] border border-white rounded-full absolute -left-[16rem] border-opacity-40 flex items-center justify-center">
-        <Link className="absolute rounded-full z-10 flex justify-center  w-[55%] h-[55%] items-center" href={"/#about"}>
+      className={`w-[300vw] transform-gpu ${activePath !== "" ? options[activePath]: options['#home']} ease-in-out duration-[3000ms] transition-all h-full flex justify-center items-center relative`}>
+      <div className={`w-[32rem] h-[32rem] border border-white rounded-full absolute -left-[16rem] border-opacity-40 flex items-center justify-center`}>
+        <Link className="absolute rounded-full z-10 flex justify-center  w-[55%] h-[55%] items-center" href={"#about" === activePath ? '#home' : '#about'}>
           <mot.div initial={{ scale: 1, borderWidth: 10 }}
             whileHover={{
               scale: 1.05,
@@ -40,12 +65,12 @@ export default function Template() {
             }}
             className="w-full h-full border-opacity-30 absolute border-white rounded-full" />
         </Link>
-        <div className="absolute w-full h-full">
+        <div className={`transition-all duration-[3000ms] absolute w-full h-full opacity-80  ${'#about' === activePath ? 'scale-[-1]' : ''}`}>
           <SphereCanvas lightPosition={[1, 0, 0]} />
         </div>
       </div>
-      <div className="w-[32rem] h-[32rem] scale-[-1] border border-white rounded-full absolute flex justify-center items-center -right-[16rem] border-opacity-40">
-        <Link className="absolute rounded-full z-10 flex justify-center  w-[55%] h-[55%] items-center" href={"/#works"}>
+      <div className={`transition-all duration-1000 w-[32rem] h-[32rem] border border-white rounded-full absolute flex justify-center items-center -right-[16rem] border-opacity-40`}>
+        <Link className="absolute rounded-full z-10 flex justify-center  w-[55%] h-[55%] items-center" href={"#works" === activePath ? '#home' : '#works'}>
           <mot.div initial={{ scale: 1, borderWidth: 10 }}
             whileHover={{
               scale: 1.05,
@@ -64,7 +89,7 @@ export default function Template() {
             }}
             className="w-full h-full border-opacity-30 absolute border-white rounded-full" />
         </Link>
-        <div className="absolute w-full h-full opacity-80">
+        <div className={`transition-all duration-[3000ms] absolute w-full h-full opacity-80 ${'#works' === activePath ? '' : 'scale-[-1]'}`}>
           <SphereCanvas lightPosition={[1, 0, 0]} />
         </div>
       </div>

@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import HomeCanvas from "../three/canvas/home"
 
 
-export default function Home({mouseX, mouseY}) {
+export default function Home() {
   return (
     <motion.div
     className="w-[42rem] h-[42rem] border-gradient relative flex justify-center items-center">
@@ -19,7 +19,7 @@ export default function Home({mouseX, mouseY}) {
       <div className="absolute w-full h-full rounded-full bg-white bg-opacity-50 blur-[100px]" />
       <div className="w-full h-full rounded-full bg-white flex justify-center items-center" />
       <div className="absolute w-[200%] h-[200%] flex justify-center items-center">
-        <HomeCanvas mouseX={mouseX} mouseY={mouseY} />
+        <HomeCanvas />
       </div>
     </div>
   </motion.div>

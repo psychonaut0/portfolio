@@ -44,6 +44,7 @@ export default function Cursor() {
 
   return (
     <motion.div
+   
       className="w-14 h-14 z-[999] flex justify-center items-center pointer-events-none border-2 border-white fixed rounded-full"
       initial={false}
       id={'cursor'}

@@ -27,7 +27,7 @@ export default function Navigation({ data }) {
   }, [router.events, data])
 
   return (
-    <div className="fixed bottom-0 flex z-50 space-x-14 py-6">
+    <div className=" bg-gradient-to-t from-black w-full justify-center fixed bottom-0 flex z-50 space-x-14 py-6">
       <LayoutGroup
         id="navigation-menu"
       >

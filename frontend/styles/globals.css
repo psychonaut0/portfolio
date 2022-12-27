@@ -46,6 +46,12 @@ a {
   
 }
 
+.radial-gradient {
+  background: radial-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 100%);
+  opacity: 0.4
+
+}
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;

@@ -7,7 +7,7 @@ import Planet from "../sections/planet";
 import About from "./about";
 import Works from "./works";
 
-export default function Template() {
+export default function Template({data}) {
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -75,7 +75,7 @@ export default function Template() {
           <Home />
         </div>
         <div className="pl-[16rem] w-[100vw] flex justify-center items-center ">
-          <Works />
+          <Works data={data.projects} />
         </div>
       </div>
 

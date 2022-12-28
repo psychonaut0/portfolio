@@ -18,8 +18,8 @@ export async function getStaticProps() {
 
   const data = await fetchAPI('/home',{populate: 'deep'})
   const navigation = await fetchAPI('/navigation/render/1')
-  const Blogprojects = await fetchAPI('/projects', {populate: 'deep'})
-  const categories = await fetchAPI('/categories', {populate: 'deep'})
+  const projects = await fetchAPI('/projects', {populate: 'deep', sort: ['category.name:ASC']})
+  const categories = await fetchAPI('/categories', {populate: 'deep', sort: ['name:ASC']})
 
 
   return {
@@ -30,7 +30,7 @@ export async function getStaticProps() {
         meta: data.meta || {},
         navigation: navigation || [],
         projects: projects.data || [],
-        categories: categories.data || []
+        categories: [...categories.data] || []
       }
     },
     revalidate: 10

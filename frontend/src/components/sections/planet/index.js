@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import SphereCanvas from '../../three/canvas/sphere'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-export default function Planet({activePath, position, href}) {
+export default function Planet({activePath, position, href, setWidth}) {
 
   const positionOffset = {
     right: '-right-[16rem]',
     left: '-left-[16rem]'
   }
 
+  const ref = useRef(null)
+
+  useLayoutEffect(() => {
+    setWidth(ref.current.offsetWidth);
+    //setHeight(boxRef.current.offsetHeight);
+  }, [setWidth]);
+
   return (
-    <div className={`transition-all duration-1000 w-[32rem] h-[32rem] border border-white rounded-full absolute flex justify-center items-center ${positionOffset?.[position]} border-opacity-40`}>
+    <div ref={ref} className={`transition-all duration-1000 w-[32rem] h-[32rem] border border-white rounded-full absolute flex justify-center items-center ${positionOffset?.[position]} border-opacity-40`}>
     <Link className="absolute rounded-full z-10 flex justify-center  w-[55%] h-[55%] items-center" href={href === activePath ? '#home' : href}>
       <motion.div initial={{ scale: 1, borderWidth: 10 }}
         whileHover={{

@@ -23,6 +23,9 @@ export default function Cursor() {
         if (el.tagName === "A" && el.href !== "") {
           setOnLink(true)
         }
+        if(el.onclick !== null && el.id !== "__next") {
+          setOnLink(true)
+        }
       })
     }
 

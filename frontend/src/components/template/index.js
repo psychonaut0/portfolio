@@ -31,6 +31,11 @@ export default function Template({ data }) {
     }
   }, [router.events])
 
+  useEffect(() => {
+    setactivePath(router.asPath.replace('/', ''))
+  }, [])
+
+
   const options = {
     '#works': '-translate-x-[100vw]',
     '#home': 'translate-x-[0vw]',

@@ -8,7 +8,7 @@ import { useState } from "react"
 export default function Navigation({ data }) {
 
   const router = useRouter()
-  const [activePath, setActivePath] = useState(0)
+  const [activePath, setActivePath] = useState(1)
 
   useEffect(() => {
     const onHashChangeStart = (url) => {
@@ -26,6 +26,15 @@ export default function Navigation({ data }) {
     }
   }, [router.events, data])
 
+  useEffect(() => {
+    data.map((element, i) => {
+      if (router.asPath.replace('/', '') === element.path) {
+        setActivePath(i)
+      }
+    })
+  }, [])
+
+
   return (
     <div className=" bg-gradient-to-t from-black w-full justify-center fixed bottom-0 flex z-50 space-x-14 py-6">
       <LayoutGroup
@@ -37,14 +46,14 @@ export default function Navigation({ data }) {
               <p className="py-2">
                 {element.title}
               </p>
-                {
-                  activePath === i &&
-                  <motion.div layoutId={'underline'} 
-                  className="w-[120%] rounded-full h-[1px] bg-orange-400" 
+              {
+                activePath === i &&
+                <motion.div layoutId={'underline'}
+                  className="w-[120%] rounded-full h-[1px] bg-orange-400"
                   transition={{
                     type: "spring"
-                  }}/>
-                }
+                  }} />
+              }
             </Link>
           })
         }

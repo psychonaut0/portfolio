@@ -1,24 +1,16 @@
 {
   "kind": "singleType",
-  "collectionName": "homes",
+  "collectionName": "global_setting",
   "info": {
-    "singularName": "home",
-    "pluralName": "homes",
-    "displayName": "Home",
-    "description": ""
+    "singularName": "global-settings",
+    "pluralName": "global-setting",
+    "displayName": "Global settings"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": false
-    },
-    "content": {
-      "type": "richtext"
-    },
     "socials": {
       "type": "relation",
       "relation": "oneToMany",

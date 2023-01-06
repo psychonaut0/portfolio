@@ -18,6 +18,9 @@ export default function Template({ data }) {
   const router = useRouter()
   const [activePath, setactivePath] = useState('')
 
+
+  const [activeCategory, setActiveCategory] = useState('')
+
   useEffect(() => {
 
     const onHashChangeStart = (url) => {
@@ -67,6 +70,7 @@ export default function Template({ data }) {
 
   function handleClick(name) {
     swiper.slideToLoop(Number(categoryRefs.current[name].current.id), 2000)
+    setActiveCategory(name)
   }
   
   return (
@@ -80,7 +84,7 @@ export default function Template({ data }) {
       <div className={`absolute flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms] w-[32rem] h-[32rem] border-8 ${activePath === "#works" ? 'opacity-100 ' : 'opacity-0 -rotate-90'}  -right-[16rem] border-l-transparent border-t-transparent border-b-transparent rounded-full flex justify-center items-center z-20`} >
         <div className="absolute flex justify-center items-center w-full h-full flex-col">
           {data.categories.map((cat, i) => {
-            return <p onClick={() => {handleClick(cat.attributes.name)}} className="absolute w-48 hover:font-semibold opacity-60 hover:opacity-100 transition-all" style={{ transform: `rotate(${rotations[i] * 1}deg) translate(${(width/2 + 110)}px) rotate(${rotations[i] * -1}deg)` }} key={i}>
+            return <p onClick={() => {handleClick(cat.attributes.name)}} className={`absolute w-48 hover:font-semibold ${activeCategory === cat.attributes.name ? 'opacity-100 font-semibold' : 'opacity-60 hover:font-semibold'}  hover:opacity-100 transition-all`} style={{ transform: `rotate(${rotations[i] * 1}deg) translate(${(width/2 + 110)}px) rotate(${rotations[i] * -1}deg)` }} key={i}>
               {cat.attributes.name}
             </p>
           })}

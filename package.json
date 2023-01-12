@@ -6,7 +6,7 @@
   "author": "psychonaut <checco0002@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "ins": "concurrently \"cd ./backend && yarn install \" \"cd ./frontend && yarn install \"",
+    "ins": "concurrently \"cd ./backend && mkdir -p ./public/uploads && yarn install \" \"cd ./frontend && yarn install \"",
     "dev": "concurrently \"cd ./backend && yarn dev \" \"cd ./frontend && yarn dev \""
   },
   "dependencies": {},

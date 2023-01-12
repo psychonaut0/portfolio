@@ -2,17 +2,23 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Image from "next/image"
 import { FreeMode, Scrollbar, Mousewheel, Keyboard } from "swiper";
-
+import { useAtom } from "jotai";
+import { cursorState } from '../../state';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+
 
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
 
 
+
 export default function Works({ data, refs, setSwiper }) {
+  const [cursor, setCursor] = useAtom(cursorState)
 
 
+  console.log(process.env.NEXT_PUBLIC_STRAPI_URL)
   const dividedData = data.reduce((acc, item, index) => {
     if (index % 2 === 0) {
       acc.push([item]);
@@ -33,6 +39,9 @@ export default function Works({ data, refs, setSwiper }) {
       <div className='w-[70%] h-screen'>
         <Swiper
           onSwiper={(swiper) => {setSwiper(swiper)}}
+          onTouchEnd={(e) => {setCursor("")}}
+          onTouchMove={(e) => {e.swipeDirection === "prev" ? setCursor("dragTop") : setCursor("dragBottom")}}
+          onTouchMoveOpposite={(e) => {setCursor("")}}
           direction='vertical'
           freeMode={true}
           scrollbar={true}

@@ -20,7 +20,8 @@ export async function getStaticProps() {
   const navigation = await fetchAPI('/navigation/render/1')
   const projects = await fetchAPI('/projects', {populate: 'deep', sort: ['category.name:ASC']})
   const categories = await fetchAPI('/categories', {populate: 'deep', sort: ['name:ASC']})
-
+  
+  console.log('data', data)
 
   return {
     props: {

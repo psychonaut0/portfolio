@@ -18,15 +18,24 @@
     "url": {
       "type": "string"
     },
-    "image": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "iconName": {
+      "type": "enumeration",
+      "enum": [
+        "github",
+        "linkedin",
+        "twitter"
+      ]
     }
   }
 }

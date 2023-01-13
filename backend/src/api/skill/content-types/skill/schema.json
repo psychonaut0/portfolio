@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -16,11 +16,40 @@
       "type": "string"
     },
     "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "iconName": {
+      "type": "enumeration",
+      "enum": [
+        "react",
+        "javascript",
+        "typescript",
+        "angular",
+        "vue",
+        "node",
+        "python",
+        "c++",
+        "wordpress",
+        "nextjs",
+        "tailwind",
+        "mongodb",
+        "firebase",
+        "postgresql",
+        "docker",
+        "portainer",
+        "bash",
+        "linux",
+        "nginx",
+        "express",
+        "photoshop",
+        "premiere",
+        "figma"
+      ]
     }
   }
 }

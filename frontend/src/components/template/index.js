@@ -10,6 +10,9 @@ import List from "../sections/list";
 
 export default function Template({ data }) {
 
+
+  console.log(data)
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -20,7 +23,7 @@ export default function Template({ data }) {
   const [activePath, setactivePath] = useState('')
 
 
- 
+
 
   useEffect(() => {
     const onHashChangeStart = (url) => {
@@ -34,6 +37,7 @@ export default function Template({ data }) {
 
   useEffect(() => {
     setactivePath(router.asPath.replace('/', ''))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -45,9 +49,6 @@ export default function Template({ data }) {
 
   const [planetWidth, setPlanetWidth] = useState(0);
   const [homeCircleWidth, setHomeCircleWidth] = useState(0)
-
-
- 
 
   const categoryNames = [...new Set(data.categories.map((item) => item.attributes.name))];
 
@@ -69,16 +70,15 @@ export default function Template({ data }) {
       className={`w-[300vw] transform-gpu ${activePath !== "" ? options[activePath] : options['#home']} ease-in-out duration-[3000ms] transition-all h-full flex justify-center items-center relative`}>
       <Planet setWidth={setPlanetWidth} href={'#about'} position={"left"} activePath={activePath} />
       <Planet setWidth={setPlanetWidth} href={'#works'} position={"right"} activePath={activePath} />
-      <List categoryRefs={categoryRefs} swiper={swiper} path={"#works"} activePath={activePath} elements={data.categories} width={planetWidth} position={"right"}/>
-      <List swiper={swiper} path={"#about"} activePath={activePath} elements={data.categories} width={planetWidth} position={"left"}/>
-      <List swiper={swiper} path={"#home"} activePath={activePath} elements={data.categories} width={homeCircleWidth} position={"center"}/>
-
+      <List categoryRefs={categoryRefs} swiper={swiper} path={"#works"} activePath={activePath} elements={data.categories} width={planetWidth} position={"right"} />
+      <List path={"#about"} activePath={activePath} elements={data.groups} width={planetWidth} position={"left"} />
+      <List path={"#home"} activePath={activePath} elements={data.socials} width={homeCircleWidth} position={"center"} />
       <div className="w-[300vw] flex absolute">
         <div className="pr-[16rem] w-[100vw] flex justify-center items-center">
           <About />
         </div>
         <div className="px-[16rem] w-[100vw] flex justify-center items-center">
-          <Home  setWidth={setHomeCircleWidth} />
+          <Home setWidth={setHomeCircleWidth} />
         </div>
         <div className="pl-[16rem] w-[100vw] flex justify-center items-center ">
           <Works setSwiper={setSwiper} refs={categoryRefs} data={data.projects} />

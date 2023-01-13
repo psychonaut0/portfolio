@@ -24,7 +24,7 @@ export default function Cursor() {
       x.set(e.clientX - 25)
       y.set(e.clientY - 25)
 
-      e.path.forEach(el => {
+      e.composedPath().forEach(el => {
         if (el.tagName === "A" && el.href !== "") {
           setOnLink(true)
         }

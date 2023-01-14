@@ -1,4 +1,4 @@
-import { SiAdobephotoshop, SiAdobepremierepro, SiAngular, SiArchlinux, SiCplusplus, SiDocker, SiExpress, SiFigma, SiFirebase, SiGnubash, SiJavascript, SiMongodb, SiNextdotjs, SiNginx, SiNodedotjs, SiPortainer, SiPostgresql, SiPython, SiReact, SiTailwindcss, SiTypescript, SiWordpress } from "react-icons/si";
+import { SiAdobephotoshop, SiAdobepremierepro, SiAngular, SiArchlinux, SiCplusplus, SiDocker, SiExpress, SiFigma, SiFirebase, SiGithub, SiGnubash, SiJavascript, SiMongodb, SiNextdotjs, SiNginx, SiNodedotjs, SiPortainer, SiPostgresql, SiPython, SiReact, SiTailwindcss, SiTypescript, SiWordpress } from "react-icons/si";
 import { BsArrowLeft} from "react-icons/bs"
 
 export function Icon({name, size, className}) {
@@ -26,7 +26,8 @@ export function Icon({name, size, className}) {
     tailwind: <SiTailwindcss className={className} size={size}/>,
     typescript: <SiTypescript className={className} size={size}/>,
     wordpress: <SiWordpress className={className} size={size}/>,
-    back: <BsArrowLeft className={className} size={size} />
+    back: <BsArrowLeft className={className} size={size} />,
+    github: <SiGithub className={className} size={size} />
   }
 
   return icons[name] || null

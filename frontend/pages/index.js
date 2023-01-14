@@ -4,9 +4,6 @@ import Template from '../src/components/template'
 
 export default function Home({ data }) {
 
-  console.log(data)
-
-
   return (
     <Layout data={data}>
       <Template data={data} />
@@ -16,18 +13,19 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
 
-  const data = await fetchAPI('/home',{populate: 'deep'})
+  const data = await fetchAPI('/home', { populate: 'deep' })
+  const about = await fetchAPI('/about', { populate: 'deep' })
   const navigation = await fetchAPI('/navigation/render/1')
-  const projects = await fetchAPI('/projects', {populate: 'deep', sort: ['category.name:ASC']})
-  const categories = await fetchAPI('/categories', {populate: 'deep', sort: ['name:ASC']})
-  const groups = await fetchAPI('/groups', {populate: 'deep', sort: ['orderId:ASC']})
-  const socials = await fetchAPI('/socials', {populate: 'deep'})
+  const projects = await fetchAPI('/projects', { populate: 'deep', sort: ['category.name:ASC'] })
+  const categories = await fetchAPI('/categories', { populate: 'deep', sort: ['name:ASC'] })
+  const groups = await fetchAPI('/groups', { populate: 'deep', sort: ['orderId:ASC'] })
+  const socials = await fetchAPI('/socials', { populate: 'deep' })
 
   return {
     props: {
       data: {
-        id: data.data.id,
-        ...data.data.attributes,
+        home: data.data.attributes || {},
+        about: about.data.attributes || {},
         meta: data.meta || {},
         navigation: navigation || [],
         projects: projects.data || [],

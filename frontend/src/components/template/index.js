@@ -11,7 +11,6 @@ import List from "../sections/list";
 export default function Template({ data }) {
 
 
-  console.log(data)
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -75,10 +74,10 @@ export default function Template({ data }) {
       <List path={"#home"} activePath={activePath} elements={data.socials} width={homeCircleWidth} position={"center"} />
       <div className="w-[300vw] flex absolute">
         <div className="pr-[16rem] w-[100vw] flex justify-center items-center">
-          <About />
+          <About data={data.about} />
         </div>
         <div className="px-[16rem] w-[100vw] flex justify-center items-center">
-          <Home setWidth={setHomeCircleWidth} />
+          <Home data={data.home} setWidth={setHomeCircleWidth} />
         </div>
         <div className="pl-[16rem] w-[100vw] flex justify-center items-center ">
           <Works setSwiper={setSwiper} refs={categoryRefs} data={data.projects} />

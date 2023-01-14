@@ -1,7 +1,7 @@
 import { useThree } from "@react-three/fiber";
 import { useSpring, useTransform } from "framer-motion";
 import { motion } from "framer-motion-3d";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Camera({ mouseX, mouseY, ...props }) {
 
@@ -22,7 +22,7 @@ export default function Camera({ mouseX, mouseY, ...props }) {
   const scene = useThree(({ scene }) => scene);
   const cameraRef = useRef();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const { current: cam } = cameraRef;
     if (cam) {
       cam.aspect = size.width / size.height;
@@ -30,7 +30,7 @@ export default function Camera({ mouseX, mouseY, ...props }) {
     }
   }, [size, props]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (cameraRef.current) {
       const oldCam = camera;
       set(() => ({ camera: cameraRef.current }));
@@ -38,9 +38,9 @@ export default function Camera({ mouseX, mouseY, ...props }) {
     }
   }, [camera, cameraRef, set]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     return cameraX.onChange(() => camera.lookAt(scene.position));
-  }, [cameraX]);
+  }, [camera, cameraX, scene.position]);
 
   return (
     <motion.perspectiveCamera

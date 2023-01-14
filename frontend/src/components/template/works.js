@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
+import { Icon } from '../utils/functions';
 
 
 
@@ -18,7 +19,6 @@ export default function Works({ data, refs, setSwiper }) {
   const [cursor, setCursor] = useAtom(cursorState)
 
 
-  console.log(process.env.NEXT_PUBLIC_STRAPI_URL)
   const dividedData = data.reduce((acc, item, index) => {
     if (index % 2 === 0) {
       acc.push([item]);
@@ -63,7 +63,10 @@ export default function Works({ data, refs, setSwiper }) {
                       return <div id={i} ref={refs.current[project.attributes.category.data.attributes.name]} key={innerIndex} className={`w-1/2 h-full relative group ${i === 1 && 'border-l-0 border-t-0'} border border-white border-opacity-20`}>
                         {
                           project.attributes.thumbnail.data &&
-                          <Image alt={'proj'} className="duration-500 object-cover opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all" fill src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.thumbnail.data.attributes.url}`} />
+                          <Image sizes="(max-width: 768px) 100vw,
+                          (max-width: 1200px) 50vw,
+                          33vw"
+                          alt={'proj'} className="duration-500 object-cover opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all" fill src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.thumbnail.data.attributes.url}`} />
                         }
                         <div className='absolute w-full h-full group-hover:opacity-90 opacity-30 duration-500 bg-gradient-to-t from-black top-0 pointer-events-none' />
                         <div className='absolute w-full h-full radial-gradient top-0 pointer-events-none' />
@@ -72,8 +75,8 @@ export default function Works({ data, refs, setSwiper }) {
                         </a>
                         {
                           project.attributes.repoUrl &&
-                          <a href={project.attributes.repoUrl} target={"_blank"} rel="noreferrer" className='transition-all opacity-0 group-hover:opacity-100 text-white text-2xl font-sans py-4 absolute z-20 bottom-0 right-0 px-4'>
-                            g
+                          <a href={project.attributes.repoUrl} target={"_blank"} rel="noreferrer" className='transition-all opacity-100 text-white text-2xl font-sans py-4 absolute z-20 bottom-0 right-0 px-4'>
+                            <Icon size={"2rem"} className={"opacity-60 hover:opacity-100 transition-all"} name={'github'} />
                           </a>
                         }
                       </div>

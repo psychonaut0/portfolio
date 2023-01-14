@@ -1,4 +1,5 @@
 import { useRef, useState } from "react"
+import { Icon } from "../../utils/functions"
 
 export default function List({ elements, path, position, swiper, activePath, width, categoryRefs }) {
 
@@ -8,12 +9,12 @@ export default function List({ elements, path, position, swiper, activePath, wid
     center: "border-l-transparent",
     left: "-left-[16rem] border-r-transparent"
   }
-  
+
   const [activeElement, setActiveElement] = useState('')
-  const [angle, setAngle] = useState(360 / (elements.length + 2))
+  const [angle, setAngle] = useState(60)
   const [elementsState, setElementsState] = useState(elements)
 
-  
+
 
   function handleClick(name, index) {
     setActiveElement(name)
@@ -21,57 +22,74 @@ export default function List({ elements, path, position, swiper, activePath, wid
       swiper.slideToLoop(Number(categoryRefs.current[name].current.id), 2000)
     }
     const selectedElement = elementsState[index]
-    if (selectedElement.attributes.skills) {
-      if(activeElement !== selectedElement.attributes.name){
-        setAngle(360 / (elements.length + 2 + selectedElement.attributes.skills.data.length))
-        let temp = [...elements]
-        temp.splice(index + 1, 0, ...selectedElement.attributes.skills.data)
-        console.log(temp)
-        setElementsState(temp)
-      }
-      else{
-        setElementsState(elements)
-        setAngle(360 / (elements.length + 2))
-        setActiveElement('')
+    if (selectedElement.attributes.type === 'back') {
+      setElementsState(elements)
+      setAngle(60)
+      setActiveElement('')
+    }
+    else {
+      if (selectedElement.attributes.skills) {
+        const skillArray = selectedElement.attributes.skills.data.map(skill => ({ ...skill, type: 'skill' }))
+        if (activeElement !== selectedElement.attributes.name) {
+          let temp = [...elements]
+          const position = (index - (index > 3 && (elementsState.length - elements.length))) + 1
+          temp = [selectedElement, ...skillArray, { attributes: { name: "Back", type: 'back', iconName: 'back' } }]
+          setElementsState(temp)
+        }
+        else {
+          setElementsState(elements)
+          setActiveElement('')
+        }
       }
     }
+
   }
 
 
   let rotations = []
-  let rot = -angle / (6 + elements.length)
+  let rot = -angle + 40 - elementsState.length * 4
 
 
-  elementsState.forEach(cat => {
+  elementsState.forEach(element => {
+    if (element.type === "skill") {
+      rot = rot + angle / 6
+    }
+    else {
+      rot = rot + angle / 4
+    }
     rotations.push(rot)
-    rot = rot + angle / 10
   })
 
-  if(path === "#about"){
-    console.log(elementsState)
+  if (path === "#about") {
+    console.log(angle)
   }
 
 
-  const adder = position === "left" ? 80 : 110
+  const adder = position === "left" ? 50 : 110
+  const subElement = 20
+
 
   return (
-    <div style={{ width: width, height: width }} className={`absolute flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms] border-8 ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} border-t-transparent border-b-transparent rounded-full flex justify-center items-center z-20`} >
-      <div className="absolute flex justify-center items-center w-full h-full flex-col">
+    <div style={{ width: width, height: width }} className={`absolute z-[999] flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms] border-8 ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} border-t-transparent border-b-transparent rounded-full flex justify-center items-center z-20`} >
+      <div className="absolute z-[999] flex justify-center items-center w-full h-full flex-col">
         {elementsState.map((element, i) => {
           return <>
-            <p
-              onClick={() => { handleClick(element.attributes.name, i) }}
+            <div
+              onClick={element.type !== "skill" ? () => { handleClick(element.attributes.name, i) } : null}
               className={`
-                absolute w-max hover:font-semibold hover:opacity-100 transition-all
+                absolute z-[999] w-max transition-all
                 ${position === "left" ? "min-w-[6rem]" : "min-w-[12rem]"} 
-                ${activeElement === element.attributes.name ? 'opacity-100 font-semibold' : 'opacity-60 hover:font-semibold'}`
-              }
-              style={{ 
-                transform: `rotate(${rotations[i] * (position === "left" ? -1 : 1)}deg)translate(${position === "left" ? "-" : ""}${(width / 2 + adder)}px) rotate(${rotations[i] * (position === "left" ? 1 : -1)}deg)` 
+                ${activeElement === element.attributes.name ? 'opacity-100 font-semibold' : (element.type !== "skill" || element.type !== "back") && "opacity-60"}
+                ${(element.type === "skill" || element.type === 'back') ? `opacity-100` : "cursor-pointer hover:font-semibold hover:opacity-100 text-lg"}
+              `}
+              style={{
+                transform: `rotate(${rotations[i] * (position === "left" ? -1 : 1)}deg) translate(${position === "left" ? "-" : ""}${(width / 2 + adder + (element.type === "skill" ? subElement : 0))}px) rotate(${rotations[i] * (position === "left" ? 1 : -1)}deg)`
               }}
               key={i}>
-              {element.attributes.name}
-            </p>
+              <span style={{ marginBottom: activeElement === element.attributes.name && `${(elementsState.length + 20)}px` }} className={`transition-all flex items-center ${activeElement === element.attributes.name ? '-translate-x-14' : 0}`}>
+                <Icon className={"p-2"} name={element.attributes.iconName} size={"2rem"} /> {element.attributes.name}
+              </span>
+            </div>
           </>
         })}
       </div>

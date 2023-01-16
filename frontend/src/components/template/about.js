@@ -10,7 +10,7 @@ export default function About({ data }) {
         </h1>
         <div className='flex relative'>
           <div className='absolute h-full w-[1px] bg-white' />
-          <article className='font-light pl-6 py-6 leading-relaxed text-xl' dangerouslySetInnerHTML={{ __html: sanitize(data.content) }} />
+          <article className='prose prose-invert font-light pl-6 py-6 leading-relaxed text-xl' dangerouslySetInnerHTML={{ __html: sanitize(data.content) }} />
         </div>
       </div>
     </div>

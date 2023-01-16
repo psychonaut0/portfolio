@@ -23,9 +23,9 @@ export default function Home({ setWidth, data }) {
         </p>
         <div className="h-[12px] relative -top-6 w-[20%] bg-white" />
         <div className="leading-relaxed font-light">
-          <div dangerouslySetInnerHTML={{ __html: sanitize(data.content) }} />
+          <div className="prose prose-invert" dangerouslySetInnerHTML={{ __html: sanitize(data.content) }} />
           <span>
-          Check out some of my <Link className="text-orange-400 underline" href={"#works"}>works</Link>.
+            Check out some of my <Link className="text-orange-400 underline" href={"#works"}>works</Link>.
           </span>
         </div>
       </div>

@@ -69,7 +69,7 @@ export default function Works({ data, refs, setSwiper }) {
                           alt={'proj'} className="duration-500 object-cover opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all" fill src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.thumbnail.data.attributes.url}`} />
                         }
                         <div className='absolute w-full h-full group-hover:opacity-90 opacity-30 duration-500 bg-gradient-to-t from-black top-0 pointer-events-none' />
-                        <div className='absolute w-full h-full radial-gradient top-0 pointer-events-none' />
+                        <div className='absolute w-full h-full group-hover:hidden radial-gradient top-0 pointer-events-none' />
                         <a href={project.attributes.url} target={"_blank"} rel="noreferrer" className='transition-all  text-white text-2xl font-sans py-4 absolute z-20 bottom-0 left-0 px-4'>
                           {project.attributes.title}
                         </a>

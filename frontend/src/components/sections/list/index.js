@@ -90,14 +90,14 @@ export default function List({ elements, path, position, swiper, activePath, wid
                     <Icon className={"p-2"} name={element.attributes.iconName} size={"2rem"} /> {element.attributes.name}
                   </span>
                   :
-                  path === "#home" || path === "" ?
-                    <a href={element.attributes.url} target={"_blank"} rel="noreferrer">
-                      {element.attributes.name}
-                    </a>
-                    :
+                  path === "#works" ?
                     <>
                       {element.attributes.name}
                     </>
+                    :
+                    <a className="flex items-center" href={element.attributes.url} target={"_blank"} rel="noreferrer">
+                      <Icon className={"p-2"} name={element.attributes.iconName} size={"2.5rem"} /> {element.attributes.name}
+                    </a>
               }
             </motion.div>
           })}

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-01-14T12:36:30.633Z"
+    "x-generation-date": "2023-01-16T16:29:07.358Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3457,7 +3457,8 @@
                               "enum": [
                                 "github",
                                 "linkedin",
-                                "twitter"
+                                "twitter",
+                                "mail"
                               ]
                             },
                             "createdAt": {
@@ -3465,10 +3466,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },
@@ -4490,7 +4487,8 @@
                               "enum": [
                                 "github",
                                 "linkedin",
-                                "twitter"
+                                "twitter",
+                                "mail"
                               ]
                             },
                             "createdAt": {
@@ -4498,10 +4496,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },
@@ -5556,7 +5550,8 @@
                               "enum": [
                                 "github",
                                 "linkedin",
-                                "twitter"
+                                "twitter",
+                                "mail"
                               ]
                             },
                             "createdAt": {
@@ -5564,10 +5559,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },
@@ -6589,7 +6580,8 @@
                               "enum": [
                                 "github",
                                 "linkedin",
-                                "twitter"
+                                "twitter",
+                                "mail"
                               ]
                             },
                             "createdAt": {
@@ -6597,10 +6589,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },
@@ -14504,7 +14492,8 @@
                               "enum": [
                                 "github",
                                 "linkedin",
-                                "twitter"
+                                "twitter",
+                                "mail"
                               ]
                             },
                             "createdAt": {
@@ -14512,10 +14501,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },
@@ -15543,7 +15528,8 @@
                               "enum": [
                                 "github",
                                 "linkedin",
-                                "twitter"
+                                "twitter",
+                                "mail"
                               ]
                             },
                             "createdAt": {
@@ -15551,10 +15537,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },
@@ -16615,7 +16597,8 @@
                               "enum": [
                                 "github",
                                 "linkedin",
-                                "twitter"
+                                "twitter",
+                                "mail"
                               ]
                             },
                             "createdAt": {
@@ -16623,10 +16606,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },
@@ -17654,7 +17633,8 @@
                               "enum": [
                                 "github",
                                 "linkedin",
-                                "twitter"
+                                "twitter",
+                                "mail"
                               ]
                             },
                             "createdAt": {
@@ -17662,10 +17642,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },
@@ -19058,10 +19034,6 @@
                 "type": "string",
                 "format": "date-time"
               },
-              "publishedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
               "createdBy": {
                 "type": "object",
                 "properties": {
@@ -20083,10 +20055,6 @@
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "publishedAt": {
                 "type": "string",
                 "format": "date-time"
               },
@@ -21147,10 +21115,6 @@
                 "type": "string",
                 "format": "date-time"
               },
-              "publishedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
               "createdBy": {
                 "type": "object",
                 "properties": {
@@ -22172,10 +22136,6 @@
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "publishedAt": {
                 "type": "string",
                 "format": "date-time"
               },
@@ -26268,7 +26228,8 @@
                 "enum": [
                   "github",
                   "linkedin",
-                  "twitter"
+                  "twitter",
+                  "mail"
                 ]
               },
               "sitemap_exclude": {
@@ -26934,7 +26895,8 @@
                 "enum": [
                   "github",
                   "linkedin",
-                  "twitter"
+                  "twitter",
+                  "mail"
                 ]
               },
               "createdAt": {
@@ -26942,10 +26904,6 @@
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "publishedAt": {
                 "type": "string",
                 "format": "date-time"
               },
@@ -27897,7 +27855,8 @@
                 "enum": [
                   "github",
                   "linkedin",
-                  "twitter"
+                  "twitter",
+                  "mail"
                 ]
               },
               "createdAt": {
@@ -27905,10 +27864,6 @@
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "publishedAt": {
                 "type": "string",
                 "format": "date-time"
               },
@@ -28893,7 +28848,8 @@
                 "enum": [
                   "github",
                   "linkedin",
-                  "twitter"
+                  "twitter",
+                  "mail"
                 ]
               },
               "createdAt": {
@@ -28901,10 +28857,6 @@
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "publishedAt": {
                 "type": "string",
                 "format": "date-time"
               },
@@ -29856,7 +29808,8 @@
                 "enum": [
                   "github",
                   "linkedin",
-                  "twitter"
+                  "twitter",
+                  "mail"
                 ]
               },
               "createdAt": {
@@ -29864,10 +29817,6 @@
                 "format": "date-time"
               },
               "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "publishedAt": {
                 "type": "string",
                 "format": "date-time"
               },
@@ -31207,10 +31156,6 @@
                               "type": "string",
                               "format": "date-time"
                             },
-                            "publishedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
                             "createdBy": {
                               "type": "object",
                               "properties": {
@@ -32305,10 +32250,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },
@@ -33442,10 +33383,6 @@
                               "type": "string",
                               "format": "date-time"
                             },
-                            "publishedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
                             "createdBy": {
                               "type": "object",
                               "properties": {
@@ -34540,10 +34477,6 @@
                               "format": "date-time"
                             },
                             "updatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "publishedAt": {
                               "type": "string",
                               "format": "date-time"
                             },

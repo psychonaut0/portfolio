@@ -7,9 +7,9 @@ export default function Layout({ data, children }) {
 
 
   return (
-    <div className="w-screen h-screen overflow-hidden animate-gradient">
+    <div className="w-screen h-screen max-h-[1200px] overflow-x-hidden animate-gradient">
       <Cursor />
-      <div className="flex w-full h-full min-h-screen justify-center items-center">
+      <div className="flex w-full h-full justify-center items-center">
         {children}
         <Navigation data={data.navigation} />
       </div>

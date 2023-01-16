@@ -1,8 +1,16 @@
+import { useRouter } from 'next/router'
 import { fetchAPI } from '../lib/api'
 import Layout from '../src/components/layout'
 import Template from '../src/components/template'
 
 export default function Home({ data }) {
+
+
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
 
   return (
     <Layout data={data}>

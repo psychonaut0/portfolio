@@ -80,7 +80,7 @@ export default function Template({ data }) {
           <Home data={data.home} setWidth={setHomeCircleWidth} />
         </div>
         <div className="pl-[16rem] w-[100vw] flex justify-center items-center ">
-          <Works setSwiper={setSwiper} refs={categoryRefs} data={data.projects} />
+          <Works data={data.projects} setSwiper={setSwiper} refs={categoryRefs} />
         </div>
       </div>
 

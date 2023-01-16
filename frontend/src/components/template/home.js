@@ -1,11 +1,11 @@
 import { motion } from "framer-motion"
 import HomeCanvas from "../three/canvas/home"
 import { useEffect, useRef } from "react";
+import { sanitize } from "../utils/functions";
+import Link from "next/link";
 
 
 export default function Home({ setWidth, data }) {
-  console.log(data)
-
   const ref = useRef(null)
 
   useEffect(() => {
@@ -22,7 +22,12 @@ export default function Home({ setWidth, data }) {
           {data.title}
         </p>
         <div className="h-[12px] relative -top-6 w-[20%] bg-white" />
-        <p className="leading-relaxed font-light" dangerouslySetInnerHTML={{__html: data.content }} />
+        <div className="leading-relaxed font-light">
+          <div dangerouslySetInnerHTML={{ __html: sanitize(data.content) }} />
+          <span>
+          Check out some of my <Link className="text-orange-400 underline" href={"#works"}>works</Link>.
+          </span>
+        </div>
       </div>
       <div className="relative w-[50%] h-[50%] flex justify-center items-center">
         <div className="absolute w-full h-full rounded-full bg-white bg-opacity-50 blur-[100px]" />

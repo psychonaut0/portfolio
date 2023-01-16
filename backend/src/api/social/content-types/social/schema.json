@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -34,7 +34,8 @@
       "enum": [
         "github",
         "linkedin",
-        "twitter"
+        "twitter",
+        "mail"
       ]
     }
   }

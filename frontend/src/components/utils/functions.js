@@ -1,5 +1,6 @@
-import { SiAdobephotoshop, SiAdobepremierepro, SiAngular, SiArchlinux, SiCplusplus, SiDocker, SiExpress, SiFigma, SiFirebase, SiGithub, SiGnubash, SiJavascript, SiMongodb, SiNextdotjs, SiNginx, SiNodedotjs, SiPortainer, SiPostgresql, SiPython, SiReact, SiTailwindcss, SiTypescript, SiWordpress } from "react-icons/si";
+import { SiAdobephotoshop, SiAdobepremierepro, SiAngular, SiArchlinux, SiCplusplus, SiDocker, SiExpress, SiFigma, SiFirebase, SiGithub, SiGnubash, SiJavascript, SiLinkedin, SiMaildotru, SiMongodb, SiNextdotjs, SiNginx, SiNodedotjs, SiPortainer, SiPostgresql, SiPython, SiReact, SiTailwindcss, SiTypescript, SiWordpress } from "react-icons/si";
 import { BsArrowLeft} from "react-icons/bs"
+import DOMPurify from "dompurify";
 
 export function Icon({name, size, className}) {
   
@@ -27,8 +28,14 @@ export function Icon({name, size, className}) {
     typescript: <SiTypescript className={className} size={size}/>,
     wordpress: <SiWordpress className={className} size={size}/>,
     back: <BsArrowLeft className={className} size={size} />,
-    github: <SiGithub className={className} size={size} />
+    github: <SiGithub className={className} size={size} />,
+    linkedin: <SiLinkedin className={className} size={size} />,
+    mail: <SiMaildotru className={className} size={size} />,
   }
 
   return icons[name] || null
+}
+
+export const sanitize = (content) => {
+	return process.browser ? DOMPurify.sanitize(content) : content
 }

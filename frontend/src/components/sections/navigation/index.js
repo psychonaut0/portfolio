@@ -32,17 +32,19 @@ export default function Navigation({ data }) {
         setActivePath(i)
       }
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
   return (
-    <div className=" bg-gradient-to-t from-black w-full justify-center fixed bottom-0 flex z-50 space-x-14 py-6">
+    <div className="font-mono justify-center fixed bottom-0 flex space-x-14 py-6">
+      <div className="pointer-events-none absolute w-screen h-full bg-gradient-to-t from-black" />
       <LayoutGroup
         id="navigation-menu"
       >
         {
           data.map((element, i) => {
-            return <Link passHref className={`${activePath === i ? 'text-orange-400' : ''} font-light transition-all flex flex-col items-center text-lg uppercase tracking-wider hover:text-orange-400`} href={element.path} key={i}>
+            return <Link passHref className={`${activePath === i ? 'text-orange-400' : ''} font-light transition-all flex flex-col items-center text-lg uppercase tracking-wider hover:text-orange-400 relative`} href={element.path} key={i}>
               <p className="py-2">
                 {element.title}
               </p>

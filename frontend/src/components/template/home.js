@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import HomeCanvas from "../three/canvas/home"
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sanitize } from "../utils/functions";
 import Link from "next/link";
 
@@ -8,22 +8,43 @@ import Link from "next/link";
 export default function Home({ setWidth, data }) {
   const ref = useRef(null)
 
+  const [height, setHeight] = useState(0)
+
+  function handleScrollEvent() {
+    if(window.innerHeight < 550) {
+      setHeight(window.innerHeight /3);
+    }
+    else if(window.innerHeight < 600) {
+      setHeight(window.innerHeight /10);
+    }
+    else{
+      setHeight(0);
+    }
+  }
+
   useEffect(() => {
-    setWidth(ref.current.offsetWidth);
-    //setHeight(boxRef.current.offsetHeight);
+    setWidth(ref.current.offsetWidth);    
   }, [setWidth]);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleScrollEvent);
+    return () => {
+        window.removeEventListener("resize", handleScrollEvent)
+    }
+
+}, [height])
 
   return (
     <motion.div
       ref={ref}
       className="w-[42rem] h-[42rem] border-gradient relative flex justify-center items-center">
-      <div className="absolute w-96 top-2 -left-64">
+      <div style={{top: `${height}px`}} className=" transition-all absolute w-96 -left-64">
         <p className="text-[100px] font-black">
           {data.title}
         </p>
         <div className="h-[12px] relative -top-6 w-[20%] bg-white" />
         <div className="leading-relaxed font-light">
-          <div className="prose prose-invert" dangerouslySetInnerHTML={{ __html: sanitize(data.content) }} />
+          <div className="font-light prose prose-invert" dangerouslySetInnerHTML={{ __html: sanitize(data.content) }} />
           <span>
             Check out some of my <Link className="text-orange-400 underline" href={"#works"}>works</Link>.
           </span>

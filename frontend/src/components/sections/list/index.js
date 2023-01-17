@@ -61,12 +61,12 @@ export default function List({ elements, path, position, swiper, activePath, wid
     rotations.push(rot)
   })
 
-  const adder = position === "left" ? 50 : 110
+  const adder = position === "left" ? 100 : 110
   const subElement = 20
 
 
   return (
-    <div style={{ width: width, height: width }} className={`absolute z-[999] flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms] border-8 ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} border-t-transparent border-b-transparent rounded-full flex justify-center items-center z-20`} >
+    <div style={{ width: width, height: width }} className={`absolute z-[999] flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms] border-8 ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} border-t-transparent border-b-transparent rounded-full flex justify-center items-center`} >
       <div className="absolute z-[999] flex justify-center items-center w-full h-full flex-col">
         <AnimatePresence
           key={`el_${path}`}
@@ -75,7 +75,7 @@ export default function List({ elements, path, position, swiper, activePath, wid
             return <motion.div
               onClick={element.type !== "skill" ? () => { handleClick(element.attributes.name, i) } : null}
               className={`
-                absolute z-[999] w-max transition-all
+                absolute z-[999] w-max transition-all font-mono
                 ${position === "left" ? "min-w-[6rem]" : "min-w-[12rem]"} 
                 ${(activeElement === element.attributes.name) ? 'opacity-100 font-semibold' : (element.type !== "skill") && "opacity-60"}
                 ${(element.type === "skill") ? `opacity-100` : "cursor-pointer hover:font-semibold hover:opacity-100 text-lg"}
@@ -87,12 +87,12 @@ export default function List({ elements, path, position, swiper, activePath, wid
               {
                 path === "#about" ?
                   <span className={`transition-all flex items-center ${activeElement === element.attributes.name ? '-translate-x-14 border-b border-b-white' : 0}`}>
-                    <Icon className={"p-2"} name={element.attributes.iconName} size={"2rem"} /> {element.attributes.name}
+                    {element.attributes.name !== "Back" ? activeElement !== element.attributes.name ? `.0${i}// `: '' : ''} {activeElement === element.attributes.name ? "~/" : ""}<Icon className={"p-2"} name={element.attributes.iconName} size={"2rem"} />{element.attributes.name}
                   </span>
                   :
                   path === "#works" ?
                     <>
-                      {element.attributes.name}
+                      {`.0${i}// `}{element.attributes.name}
                     </>
                     :
                     <a className="flex items-center" href={element.attributes.url} target={"_blank"} rel="noreferrer">

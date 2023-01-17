@@ -11,10 +11,14 @@ export default function Home({ setWidth, data }) {
   const [height, setHeight] = useState(0)
 
   function handleScrollEvent() {
-    if(window.innerHeight < 550) {
+    setWidth(ref.current.offsetWidth);  
+    if(window.innerHeight < 480) {
       setHeight(window.innerHeight /3);
     }
-    else if(window.innerHeight < 600) {
+    else if(window.innerHeight < 530) {
+      setHeight(window.innerHeight /5);
+    }
+    else if(window.innerHeight < 620) {
       setHeight(window.innerHeight /10);
     }
     else{
@@ -22,23 +26,20 @@ export default function Home({ setWidth, data }) {
     }
   }
 
-  useEffect(() => {
-    setWidth(ref.current.offsetWidth);    
-  }, [setWidth]);
+
 
   useEffect(() => {
     window.addEventListener('resize', handleScrollEvent);
     return () => {
         window.removeEventListener("resize", handleScrollEvent)
     }
-
-}, [height])
+}, [])
 
   return (
     <motion.div
       ref={ref}
-      className="w-[42rem] h-[42rem] border-gradient relative flex justify-center items-center">
-      <div style={{top: `${height}px`}} className=" transition-all absolute w-96 -left-64">
+      className="w-[30rem] h-[30rem] lg:w-[32rem] lg:h-[32rem] xl:w-[36rem] xl:h-[36rem] 2xl:w-[42rem] 2xl:h-[42rem] border-gradient relative flex justify-center items-center">
+      <div style={{top: `${height}px`}} className="pl-16 transition-all absolute w-96 -left-64">
         <p className="text-[100px] font-black">
           {data.title}
         </p>

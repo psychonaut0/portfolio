@@ -6,9 +6,15 @@ export default function List({ elements, path, position, swiper, activePath, wid
 
 
   const positionOptions = {
-    right: "-right-[16rem] border-l-transparent",
-    center: "border-l-transparent",
-    left: "-left-[16rem] border-r-transparent"
+    right: '-right-[12rem] lg:-right-[12rem] xl:-right-[14rem] 2xl:-right-[16rem]',
+    center: "",
+    left: '-left-[12rem] lg:-left-[12rem] xl:-left-[14rem] 2xl:-left-[16rem]'
+  }
+
+  const borderOptions = {
+    right: "border-l-transparent",
+    center: "border-transparent",
+    left: "border-r-transparent"
   }
 
   const [activeElement, setActiveElement] = useState('')
@@ -46,7 +52,6 @@ export default function List({ elements, path, position, swiper, activePath, wid
 
   }
 
-
   let rotations = []
   let rot = -angle + 40 - elementsState.length * 4
 
@@ -66,8 +71,9 @@ export default function List({ elements, path, position, swiper, activePath, wid
 
 
   return (
-    <div style={{ width: width, height: width }} className={`absolute z-[999] flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms] border-8 ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} border-t-transparent border-b-transparent rounded-full flex justify-center items-center`} >
-      <div className="absolute z-[999] flex justify-center items-center w-full h-full flex-col">
+    <div style={{ width: width, height: width }} className={`min-w-[10rem] min-h-[10rem] absolute flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms]  ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} rounded-full flex justify-center items-center`}>
+      <div className={`absolute pointer-events-none z-[999] w-full h-full rounded-full border-white border-[4px] border-t-transparent border-b-transparent ${borderOptions[position]}`} />
+      <div className="absolute flex justify-center items-center w-full h-full flex-col">
         <AnimatePresence
           key={`el_${path}`}
         >
@@ -81,7 +87,7 @@ export default function List({ elements, path, position, swiper, activePath, wid
                 ${(element.type === "skill") ? `opacity-100` : "cursor-pointer hover:font-semibold hover:opacity-100 text-lg"}
               `}
               style={{
-                transform: `rotate(${rotations[i] * (position === "left" ? -1 : 1)}deg) translate(${position === "left" ? "-" : ""}${(width / 2 + adder + (element.type === "skill" ? subElement : 0))}px) rotate(${rotations[i] * (position === "left" ? 1 : -1)}deg)`
+                transform: `rotate(${rotations[i] * (position === "left" ? -1 : 1)}deg) translate(${position === "left" ? "-" : ""}${((width < 10 ? 250 : width) / 2 + adder + (element.type === "skill" ? subElement : 0))}px) rotate(${rotations[i] * (position === "left" ? 1 : -1)}deg)`
               }}
               key={`${path}${i}`}>
               {

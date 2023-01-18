@@ -6,9 +6,9 @@ export default function List({ elements, path, position, swiper, activePath, wid
 
 
   const positionOptions = {
-    right: '-right-[12rem] lg:-right-[12rem] xl:-right-[14rem] 2xl:-right-[16rem]',
-    center: "",
-    left: '-left-[12rem] lg:-left-[12rem] xl:-left-[14rem] 2xl:-left-[16rem]'
+    right: `-right-[16rem] lg:-right-[9rem] xl:-right-[14rem] 2xl:-right-[16rem]`,
+    center: ``,
+    left: `-left-[14rem] lg:-left-[9rem] -left-[12rem] lg:-left-[12rem] xl:-left-[14rem] 2xl:-left-[16rem]`
   }
 
   const borderOptions = {
@@ -71,7 +71,7 @@ export default function List({ elements, path, position, swiper, activePath, wid
 
 
   return (
-    <div style={{ width: width, height: width }} className={`min-w-[10rem] min-h-[10rem] absolute flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms]  ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} rounded-full flex justify-center items-center`}>
+    width > 10 ? <div style={{ width: width > 10 ? width : 0, height: width > 10 ? width : 0 }} className={` absolute flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms]  ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} rounded-full flex justify-center items-center`}>
       <div className={`absolute pointer-events-none z-[999] w-full h-full rounded-full border-white border-[4px] border-t-transparent border-b-transparent ${borderOptions[position]}`} />
       <div className="absolute flex justify-center items-center w-full h-full flex-col">
         <AnimatePresence
@@ -87,13 +87,13 @@ export default function List({ elements, path, position, swiper, activePath, wid
                 ${(element.type === "skill") ? `opacity-100` : "cursor-pointer hover:font-semibold hover:opacity-100 text-lg"}
               `}
               style={{
-                transform: `rotate(${rotations[i] * (position === "left" ? -1 : 1)}deg) translate(${position === "left" ? "-" : ""}${((width < 10 ? 250 : width) / 2 + adder + (element.type === "skill" ? subElement : 0))}px) rotate(${rotations[i] * (position === "left" ? 1 : -1)}deg)`
+                transform: `${width > 10 && `rotate(${rotations[i] * (position === "left" ? -1 : 1)}deg) translate(${position === "left" ? "-" : ""}${((width < 10 ? 100 : width) / 2 + adder + (element.type === "skill" ? subElement : 0))}px) rotate(${rotations[i] * (position === "left" ? 1 : -1)}deg)`}`
               }}
               key={`${path}${i}`}>
               {
                 path === "#about" ?
                   <span className={`transition-all flex items-center ${activeElement === element.attributes.name ? '-translate-x-14 border-b border-b-white' : 0}`}>
-                    {element.attributes.name !== "Back" ? activeElement !== element.attributes.name ? `.0${i}// `: '' : ''} {activeElement === element.attributes.name ? "~/" : ""}<Icon className={"p-2"} name={element.attributes.iconName} size={"2rem"} />{element.attributes.name}
+                    {element.attributes.name !== "Back" ? activeElement !== element.attributes.name ? `.0${i}// ` : '' : ''} {activeElement === element.attributes.name ? "~/" : ""}<Icon className={"p-2"} name={element.attributes.iconName} size={"2rem"} />{element.attributes.name}
                   </span>
                   :
                   path === "#works" ?
@@ -110,5 +110,38 @@ export default function List({ elements, path, position, swiper, activePath, wid
         </AnimatePresence>
       </div>
     </div>
+      :
+      <AnimatePresence key={`el_${path}`}>
+        <div className={`${positionOptions[position]} absolute z-[999] flex flex-col space-y-4 h-full py-20`}>
+          {elementsState.map((element, i) => {
+            return <motion.div
+              onClick={element.type !== "skill" ? () => { handleClick(element.attributes.name, i) } : null}
+              className={`
+           w-max transition-all font-mono
+           
+          ${position === "left" ? "min-w-[6rem]" : "min-w-[12rem]"} 
+          ${(activeElement === element.attributes.name) ? 'opacity-100 font-semibold' : (element.type !== "skill") && "opacity-60"}
+          ${(element.type === "skill") ? `opacity-100` : "cursor-pointer hover:font-semibold hover:opacity-100 text-lg"}
+        `}
+              key={`${path}${i}`}>
+              {
+                path === "#about" ?
+                  <span className={`transition-all flex items-center ${activeElement === element.attributes.name ? '-translate-x-4 border-b border-b-white' : 0}`}>
+                    {element.attributes.name !== "Back" ? activeElement !== element.attributes.name ? `.0${i}// ` : '' : ''} {activeElement === element.attributes.name ? "~/" : ""}<Icon className={"p-2"} name={element.attributes.iconName} size={"2rem"} />{element.attributes.name}
+                  </span>
+                  :
+                  path === "#works" ?
+                    <>
+                      {`.0${i}// `}{element.attributes.name}
+                    </>
+                    :
+                    <a className="flex items-center" href={element.attributes.url} target={"_blank"} rel="noreferrer">
+                      <Icon className={"p-2"} name={element.attributes.iconName} size={"2.5rem"} /> {element.attributes.name}
+                    </a>
+              }
+            </motion.div>
+          })}
+        </div>
+      </AnimatePresence>
   )
 }

@@ -34,9 +34,9 @@ export default function Works({ data, refs, setSwiper }) {
   return (
     <div className='w-full flex'>
 
-      <div className='w-[30%]'>
+      <div className='md:w-[30%]'>
       </div>
-      <div className='w-[70%] h-screen'>
+      <div className='w-full md:w-[70%] h-screen'>
         <Swiper
           onSwiper={(swiper) => {setSwiper(swiper)}}
           onTouchEnd={(e) => {setCursor("")}}

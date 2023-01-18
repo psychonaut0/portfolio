@@ -40,12 +40,12 @@ export default function Home({ setWidth, data }) {
   return (
     <motion.div
       ref={ref}
-      className="w-[30rem] h-[30rem] lg:w-[32rem] lg:h-[32rem] xl:w-[36rem] xl:h-[36rem] 2xl:w-[42rem] 2xl:h-[42rem] border-gradient relative flex justify-center items-center">
-      <div style={{top: `${height}px`}} className="pl-16 transition-all absolute w-96 -left-64">
-        <p className="text-[100px] font-black">
+      className="top-24 md:top-0 w-[16rem] h-[16rem] md:w-[24rem] md:h-[24rem] lg:w-[32rem] lg:h-[32rem] xl:w-[36rem] xl:h-[36rem] 2xl:w-[42rem] 2xl:h-[42rem] border-gradient relative flex justify-center items-center">
+      <div style={{top: `${height}px`}} className="pl-16 text-white transition-all absolute max-w-[24rem] -translate-y-64 md:-translate-y-24 lg:-translate-y-0 -left-[26vw] md:-left-[26vw] lg:-left-64 z-[999] mix-blend-difference">
+        <p className="text-6xl lg:text-8xl font-black">
           {data.title}
         </p>
-        <div className="h-[12px] relative -top-6 w-[20%] bg-white" />
+        <div className="h-[6px] lg:h-[12px] relative -top-0 mb-4 w-[20%] bg-white" />
         <div className="leading-relaxed font-light">
           <div className="font-light prose prose-invert" dangerouslySetInnerHTML={{ __html: sanitize(data.content) }} />
           <span>

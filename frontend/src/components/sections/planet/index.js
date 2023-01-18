@@ -6,8 +6,8 @@ import Link from 'next/link'
 export default function Planet({ activePath, position, href, setWidth }) {
 
   const positionOffset = {
-    right: '-right-[12rem] lg:-right-[12rem] xl:-right-[14rem] 2xl:-right-[16rem]',
-    left: '-left-[12rem] lg:-left-[12rem] xl:-left-[14rem] 2xl:-left-[16rem]'
+    right: `${activePath === href ? "-right-[9rem] lg:-right-[9rem]" : "-right-[12rem] lg:-right-[12rem]"} xl:-right-[14rem] 2xl:-right-[16rem]`,
+    left: `${activePath === href ? "-left-[9rem] lg:-left-[9rem]" : "-left-[12rem] lg:-left-[12rem]"} -left-[12rem] lg:-left-[12rem] xl:-left-[14rem] 2xl:-left-[16rem]`
   }
 
   const ref = useRef(null)

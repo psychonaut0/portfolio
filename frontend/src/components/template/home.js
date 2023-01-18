@@ -26,7 +26,9 @@ export default function Home({ setWidth, data }) {
     }
   }
 
-
+  useEffect(() => {
+    setWidth(ref.current.offsetWidth);
+  }, [])
 
   useEffect(() => {
     window.addEventListener('resize', handleScrollEvent);

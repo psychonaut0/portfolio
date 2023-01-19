@@ -38,10 +38,10 @@ export default function Works({ data, refs, setSwiper }) {
       </div>
       <div className='w-full md:w-[70%] h-screen'>
         <Swiper
-          onSwiper={(swiper) => {setSwiper(swiper)}}
-          onTouchEnd={(e) => {setCursor("")}}
-          onTouchMove={(e) => {e.swipeDirection === "prev" ? setCursor("dragTop") : setCursor("dragBottom")}}
-          onTouchMoveOpposite={(e) => {setCursor("")}}
+          onSwiper={(swiper) => { setSwiper(swiper) }}
+          onTouchEnd={(e) => { setCursor("") }}
+          onTouchMove={(e) => { e.swipeDirection === "prev" ? setCursor("dragTop") : setCursor("dragBottom") }}
+          onTouchMoveOpposite={(e) => { setCursor("") }}
           direction='vertical'
           freeMode={true}
           scrollbar={true}
@@ -66,16 +66,25 @@ export default function Works({ data, refs, setSwiper }) {
                           <Image sizes="(max-width: 768px) 100vw,
                           (max-width: 1200px) 50vw,
                           33vw"
-                          alt={'proj'} className="duration-500 object-cover opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all" fill src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.thumbnail.data.attributes.url}`} />
+                            alt={project.attributes.thumbnail.data.attributes.alternativeText} className="duration-500 object-cover opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all" fill src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.thumbnail.data.attributes.url}`} />
                         }
                         <div className='absolute w-full h-full group-hover:opacity-90 opacity-30 duration-500 bg-gradient-to-t from-black top-0 pointer-events-none' />
                         <div className='absolute w-full h-full group-hover:hidden radial-gradient top-0 pointer-events-none' />
-                        <a href={project.attributes.url} target={"_blank"} rel="noreferrer" className='transition-all  text-white text-2xl font-sans py-4 absolute z-20 bottom-0 left-0 px-4'>
-                          {project.attributes.title}
-                        </a>
+                        <span className='transition-all  text-white text-2xl font-sans py-4 absolute z-20 bottom-0 left-0 px-4'>
+                          {
+                            project.attributes.url ?
+                              <a href={project.attributes.url} target={"_blank"} rel="noreferrer" >
+                                {project.attributes.title}
+                              </a>
+                              :
+                              <p>
+                                {project.attributes.title}
+                              </p>
+                          }
+                        </span>
                         {
                           project.attributes.repoUrl &&
-                          <a href={project.attributes.repoUrl} target={"_blank"} rel="noreferrer" className='transition-all opacity-100 text-white text-2xl font-sans py-4 absolute z-20 bottom-0 right-0 px-4'>
+                          <a aria-label={`Github repo of ${project.attributes.title}`} href={project.attributes.repoUrl} target={"_blank"} rel="noreferrer" className='transition-all opacity-100 text-white text-2xl font-sans py-4 absolute z-20 bottom-0 right-0 px-4'>
                             <Icon size={"2rem"} className={"opacity-60 hover:opacity-100 transition-all"} name={'github'} />
                           </a>
                         }

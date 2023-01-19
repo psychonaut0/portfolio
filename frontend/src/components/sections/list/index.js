@@ -71,7 +71,7 @@ export default function List({ elements, path, position, swiper, activePath, wid
 
 
   return (
-    width > 10 ? <div style={{ width: width > 10 ? width : 0, height: width > 10 ? width : 0 }} className={` absolute flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms]  ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} rounded-full flex justify-center items-center`}>
+    width > 10 ? <div style={{ width: width > 10 ? width : 0, height: width > 10 ? width : 0 }} className={`hidden absolute sm:flex items-center transition-all ease-in-out delay-[1500ms] duration-[3000ms]  ${activePath === path ? 'opacity-100 ' : 'opacity-0 -rotate-90'} ${positionOptions[position]} rounded-full flex justify-center items-center`}>
       <div className={`absolute pointer-events-none z-[999] w-full h-full rounded-full border-white border-[4px] border-t-transparent border-b-transparent ${borderOptions[position]}`} />
       <div className="absolute flex justify-center items-center w-full h-full flex-col">
         <AnimatePresence
@@ -112,7 +112,7 @@ export default function List({ elements, path, position, swiper, activePath, wid
     </div>
       :
       <AnimatePresence key={`el_${path}`}>
-        <div className={`${positionOptions[position]} absolute z-[999] flex flex-col space-y-4 h-full py-20`}>
+        <div className={`${positionOptions[position]} absolute z-[999] hidden sm:flex flex-col space-y-4 h-full py-20`}>
           {elementsState.map((element, i) => {
             return <motion.div
               onClick={element.type !== "skill" ? () => { handleClick(element.attributes.name, i) } : null}

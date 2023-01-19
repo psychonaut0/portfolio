@@ -11,37 +11,40 @@ export default function Home({ setWidth, data }) {
   const [height, setHeight] = useState(0)
 
   function handleScrollEvent() {
-    setWidth(ref.current.offsetWidth);  
-    if(window.innerHeight < 480) {
-      setHeight(window.innerHeight /3);
+    setWidth(ref.current.offsetWidth);
+    if (window.innerHeight < 480) {
+      setHeight(window.innerHeight / 3);
     }
-    else if(window.innerHeight < 530) {
-      setHeight(window.innerHeight /5);
+    else if (window.innerHeight < 530) {
+      setHeight(window.innerHeight / 5);
     }
-    else if(window.innerHeight < 620) {
-      setHeight(window.innerHeight /10);
+    else if (window.innerHeight < 620) {
+      setHeight(window.innerHeight / 10);
     }
-    else{
+    else {
       setHeight(0);
     }
   }
 
   useEffect(() => {
     setWidth(ref.current.offsetWidth);
+    handleScrollEvent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     window.addEventListener('resize', handleScrollEvent);
     return () => {
-        window.removeEventListener("resize", handleScrollEvent)
+      window.removeEventListener("resize", handleScrollEvent)
     }
-}, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <motion.div
       ref={ref}
       className="top-24 md:top-0 w-[16rem] h-[16rem] md:w-[24rem] md:h-[24rem] lg:w-[32rem] lg:h-[32rem] xl:w-[36rem] xl:h-[36rem] 2xl:w-[42rem] 2xl:h-[42rem] border-gradient relative flex justify-center items-center">
-      <div style={{top: `${height}px`}} className="pl-16 text-white transition-all absolute max-w-[24rem] -translate-y-64 md:-translate-y-24 lg:-translate-y-0 -left-[26vw] md:-left-[26vw] lg:-left-64 z-[999] mix-blend-difference">
+      <div style={{ top: `${height}px` }} className="pl-16 text-white transition-all absolute max-w-[24rem] -translate-y-64 md:-translate-y-24 lg:-translate-y-0 -left-[26vw] md:-left-[26vw] lg:-left-64 z-[999] mix-blend-difference">
         <p className="text-6xl lg:text-8xl font-black">
           {data.title}
         </p>

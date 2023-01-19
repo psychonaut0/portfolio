@@ -8,13 +8,7 @@ export default function Home({ data }) {
 
 
   const router = useRouter()
-  
-  useEffect(() => {
-    if (router.asPath === "/") {
-      router.push("/#home")
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+
 
 
   if (router.isFallback) {

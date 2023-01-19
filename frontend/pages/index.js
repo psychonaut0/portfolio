@@ -2,11 +2,20 @@ import { useRouter } from 'next/router'
 import { fetchAPI } from '../lib/api'
 import Layout from '../src/components/layout'
 import Template from '../src/components/template'
+import { useEffect } from 'react'
 
 export default function Home({ data }) {
 
 
   const router = useRouter()
+  
+  useEffect(() => {
+    if (router.asPath === "/") {
+      router.push("/#home")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
 
   if (router.isFallback) {
     return <div>Loading...</div>

@@ -7,6 +7,7 @@ import Planet from "../sections/planet";
 import About from "./about";
 import Works from "./works";
 import List from "../sections/list";
+import Image from "next/image";
 
 export default function Template({ data }) {
 

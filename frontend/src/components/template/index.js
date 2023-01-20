@@ -73,6 +73,7 @@ export default function Template({ data }) {
       <List categoryRefs={categoryRefs} swiper={swiper} path={"#works"} activePath={activePath} elements={data.categories} width={planetWidth} position={"right"} />
       <List path={"#about"} activePath={activePath} elements={data.groups} width={planetWidth} position={"left"} />
       <List path={"#home"} activePath={activePath} elements={data.socials} width={homeCircleWidth} position={"center"} />
+      <List path={""} activePath={activePath} elements={data.socials} width={homeCircleWidth} position={"center"} />
       <div className="w-[300vw] flex absolute items-center justify-center">
         <div className="pr-[6rem] lg:pr-[12rem] xl:pr-[14rem] 2xl:pr-[16rem] w-[100vw] h-screen overflow-auto">
           <About width={planetWidth} data={data.about} />

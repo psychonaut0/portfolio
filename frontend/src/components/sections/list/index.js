@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion"
 
 export default function List({ elements, path, position, swiper, activePath, width, categoryRefs }) {
 
-
   const positionOptions = {
     right: `-right-[16rem] lg:-right-[9rem] xl:-right-[14rem] 2xl:-right-[16rem]`,
     center: ``,
@@ -134,6 +133,11 @@ export default function List({ elements, path, position, swiper, activePath, wid
                     <>
                       {`.0${i}// `}{element.attributes.name}
                     </>
+                    :
+                    path === "" ?
+                    <a className="flex items-center" href={element.attributes.url} target={"_blank"} rel="noreferrer">
+                      <Icon className={"p-2"} name={element.attributes.iconName} size={"2.5rem"} /> {element.attributes.name}
+                    </a>
                     :
                     <a className="flex items-center" href={element.attributes.url} target={"_blank"} rel="noreferrer">
                       <Icon className={"p-2"} name={element.attributes.iconName} size={"2.5rem"} /> {element.attributes.name}

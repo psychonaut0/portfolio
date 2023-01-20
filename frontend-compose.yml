@@ -1,0 +1,24 @@
+version: '3.8'
+
+networks:
+  nginx-proxy-network:
+    external: true
+
+volumes:
+  portfolio-client:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /mnt/cloud/volumes/portfolio/client
+
+services:
+  portfolio-client:
+    build:
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    networks:
+      - nginx-proxy-network
+    restart: always
+    volumes:
+      - portfolio-client:/app
+      - /app/node_modules
+      - /app/.next

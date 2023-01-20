@@ -47,6 +47,9 @@ services:
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DATABASE_PORT: 5432
       APP_KEYS: ${STRAPI_APP_KEYS}
+      API_TOKEN_SALT: ${STRAPI_API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${STRAPI_ADMIN_JWT_SECRET}
+      JWT_SECRET: ${STRAPI_JWT_SECRET}
     networks:
       - nginx-proxy-network
     ports:

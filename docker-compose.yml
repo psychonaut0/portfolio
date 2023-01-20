@@ -1,0 +1,62 @@
+version: '3.8'
+
+networks:
+  nginx-proxy-network:
+    external: true
+
+volumes:
+  portfolio-data:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /mnt/cloud/volumes/portfolio/data
+  portfolio-server:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /mnt/cloud/volumes/portfolio/server
+  portfolio-db:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /mnt/cloud/volumes/portfolio/db
+
+services:
+  portfolio-client:
+    build:
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    networks:
+      - nginx-proxy-network
+    restart: always
+    network_mode: "host"
+    volumes:
+      - portfolio-data:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - portfolio-server
+ 
+  portfolio-server:
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+      network: host
+    restart: always
+    networks:
+      - nginx-proxy-network
+    volumes:
+      - portfolio-data:/app
+      - /app/node_modules
+
+  portfolio-db:
+    image: postgres:12.0-alpine
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - portfolio-db:/var/lib/postgresql/data/
+    networks:
+      - nginx-proxy-network
+
+

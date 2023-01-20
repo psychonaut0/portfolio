@@ -10,7 +10,10 @@ RUN yarn install
 
 COPY ./frontend /app/
 
+ENV NODE_ENV=production
+
 RUN yarn build
+
 
 EXPOSE 3000
 

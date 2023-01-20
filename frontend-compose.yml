@@ -16,12 +16,12 @@ services:
       context: .
       dockerfile: ./docker/frontend/Dockerfile
       network: host
+      args:
+        - NEXT_PUBLIC_STRAPI_URL
+        - STRAPI_TOKEN
+        - NEXT_PUBLIC_WEBSITE_URL
     networks:
       - nginx-proxy-network
-    args:
-      - NEXT_PUBLIC_STRAPI_URL
-      - STRAPI_TOKEN
-      - NEXT_PUBLIC_WEBSITE_URL
     restart: always
     ports:
       - '3000:3000'

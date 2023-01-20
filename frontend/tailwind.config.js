@@ -7,8 +7,13 @@ module.exports = {
   ],
   theme: {
     extend: {
-
+      fontFamily: {
+        "sans": ['Raleway'],
+        "mono": ['IBM Plex Mono'],
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

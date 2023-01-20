@@ -1,0 +1,62 @@
+version: '3.8'
+
+networks:
+  nginx-proxy-network:
+    external: true
+
+volumes:
+  portfolio-data:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /mnt/cloud/volumes/portfolio/data
+  portfolio-server:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /mnt/cloud/volumes/portfolio/server
+  portfolio-db:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /mnt/cloud/volumes/portfolio/db
+
+services:
+  portfolio-server:
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+      network: host
+    restart: always
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: portfolio-db
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: 5432
+      APP_KEYS: ${STRAPI_APP_KEYS}
+      API_TOKEN_SALT: ${STRAPI_API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${STRAPI_ADMIN_JWT_SECRET}
+      JWT_SECRET: ${STRAPI_JWT_SECRET}
+    networks:
+      - nginx-proxy-network
+    ports:
+      - '1337:1337'
+    volumes:
+      - portfolio-data:/app
+      - /app/node_modules
+
+  portfolio-db:
+    image: postgres:12.0-alpine
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - portfolio-db:/var/lib/postgresql/data/
+    ports:
+      - '5432:5432'
+    networks:
+      - nginx-proxy-network
+
+

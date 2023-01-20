@@ -1,0 +1,31 @@
+version: '3.8'
+
+networks:
+  nginx-proxy-network:
+    external: true
+
+volumes:
+  portfolio-client:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /mnt/cloud/volumes/portfolio/client
+
+services:
+  portfolio-client:
+    build:
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+      network: host
+      args:
+        NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
+        STRAPI_TOKEN: ${STRAPI_TOKEN}
+        NEXT_PUBLIC_WEBSITE_URL: ${NEXT_PUBLIC_WEBSITE_URL}
+    networks:
+      - nginx-proxy-network
+    restart: always
+    ports:
+      - '4000:3000'
+    volumes:
+      - portfolio-client:/app
+      - /app/node_modules
+      - /app/.next

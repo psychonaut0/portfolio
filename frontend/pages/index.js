@@ -2,11 +2,14 @@ import { useRouter } from 'next/router'
 import { fetchAPI } from '../lib/api'
 import Layout from '../src/components/layout'
 import Template from '../src/components/template'
+import { useEffect } from 'react'
 
 export default function Home({ data }) {
 
 
   const router = useRouter()
+
+
 
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -20,7 +23,6 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-
   const data = await fetchAPI('/home', { populate: 'deep' })
   const about = await fetchAPI('/about', { populate: 'deep' })
   const navigation = await fetchAPI('/navigation/render/1')

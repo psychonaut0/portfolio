@@ -5,7 +5,7 @@ import { motion } from "framer-motion-3d"
 
 export function ManModel({mouseX, mouseY}) {
 
-  const { nodes, materials } = useGLTF('http://localhost:3000/model.glb')
+  const { nodes, materials } = useGLTF('/model.glb')
 
   
   return (
@@ -21,4 +21,4 @@ export function ManModel({mouseX, mouseY}) {
   )
 }
 
-useGLTF.preload('http://localhost:3000/model.glb')
+useGLTF.preload('/model.glb')

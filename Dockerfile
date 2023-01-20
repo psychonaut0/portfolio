@@ -20,7 +20,7 @@ CMD ["yarn", "start"]
 
 
 # Frontend
-FROM node:alpine AS frontend
+FROM node:16-alpine AS frontend
 
 RUN mkdir -p /app
 WORKDIR /app

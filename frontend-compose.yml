@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/frontend/Dockerfile
-      network: nginx-proxy-network
+      network: host
     networks:
       - nginx-proxy-network
     environment:

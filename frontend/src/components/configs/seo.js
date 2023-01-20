@@ -15,7 +15,7 @@ export default function Seo({ data }) {
         description: seo.metaDescription,
         images: [
           {
-            url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}${seo.metaImage.data.attributes.url}`,
+            url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${seo.metaImage.data.attributes.url}`,
             width: seo.metaImage.data.attributes.width,
             height: seo.metaImage.data.attributes.height,
             alt: seo.metaImage.data.attributes.alternativeText,

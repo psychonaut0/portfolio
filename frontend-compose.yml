@@ -18,10 +18,10 @@ services:
       network: host
     networks:
       - nginx-proxy-network
-    environment:
-      NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
-      STRAPI_TOKEN: ${STRAPI_TOKEN}
-      NEXT_PUBLIC_WEBSITE_URL: ${NEXT_PUBLIC_WEBSITE_URL}
+    args:
+      - NEXT_PUBLIC_STRAPI_URL
+      - STRAPI_TOKEN
+      - NEXT_PUBLIC_WEBSITE_URL
     restart: always
     ports:
       - '3000:3000'

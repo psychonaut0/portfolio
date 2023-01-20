@@ -23,7 +23,6 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-
   const data = await fetchAPI('/home', { populate: 'deep' })
   const about = await fetchAPI('/about', { populate: 'deep' })
   const navigation = await fetchAPI('/navigation/render/1')

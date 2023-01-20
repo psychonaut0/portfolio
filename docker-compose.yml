@@ -41,6 +41,8 @@ services:
     restart: always
     networks:
       - nginx-proxy-network
+    ports:
+      - '1337:1337'
     volumes:
       - portfolio-data:/app
       - /app/node_modules
@@ -55,6 +57,8 @@ services:
       POSTGRES_DB: ${DATABASE_NAME}
     volumes:
       - portfolio-db:/var/lib/postgresql/data/
+    ports:
+      - '5432:5432'
     networks:
       - nginx-proxy-network
 

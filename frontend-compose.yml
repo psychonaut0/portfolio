@@ -17,6 +17,10 @@ services:
       dockerfile: ./docker/frontend/Dockerfile
     networks:
       - nginx-proxy-network
+    environment:
+      NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
+      STRAPI_TOKEN: ${STRAPI_TOKEN}
+      NEXT_PUBLIC_WEBSITE_URL: ${NEXT_PUBLIC_WEBSITE_URL}
     restart: always
     volumes:
       - portfolio-client:/app

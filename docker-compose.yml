@@ -19,19 +19,19 @@ volumes:
       mountpoint: /mnt/cloud/volumes/portfolio/db
 
 services:
-  portfolio-client:
-    build:
-      context: .
-      dockerfile: ./docker/frontend/Dockerfile
-    networks:
-      - nginx-proxy-network
-    restart: always
-    volumes:
-      - portfolio-data:/app
-      - /app/node_modules
-      - /app/.next
-    depends_on:
-      - portfolio-server
+  # portfolio-client:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/frontend/Dockerfile
+  #   networks:
+  #     - nginx-proxy-network
+  #   restart: always
+  #   volumes:
+  #     - portfolio-data:/app
+  #     - /app/node_modules
+  #     - /app/.next
+  #   depends_on:
+  #     - portfolio-server
  
   portfolio-server:
     build:

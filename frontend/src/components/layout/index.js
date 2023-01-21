@@ -20,6 +20,9 @@ export default function Layout({ data, children }) {
   return (
     <>
       <div className=" font-test-4 w-screen h-screen overflow-hidden animate-gradient">
+        <Head>
+        <meta name="google-site-verification" content="O17C4dQ_Gi7GioyS_zffrLKDXP9wsadQrdbFU-ZYsjc" />
+        </Head>
         <Seo data={data} />
         <Cursor />
         <div className="flex w-full h-full justify-center items-center">

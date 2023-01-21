@@ -9,7 +9,7 @@ function Scene() {
     roughnessMap: '/materials/rock/Rock_Roughness.jpg',
     normalMap: '/materials/rock/Rock_Normal.jpg',
     aoMap: '/materials/rock/Rock_AmbientOcclusion.jpg',
-    displacementMap: '/materials/rock/Rock_Height.png'
+    displacementMap: '/materials/rock/Rock_Height.jpg'
   })
 
   return (

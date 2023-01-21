@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost"]
+    domains: ["localhost", "strapi.blvckhat.dev"]
   },
   i18n: {
     locales: ['en'],

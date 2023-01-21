@@ -21,6 +21,7 @@ services:
       dockerfile: ./docker/backend/Dockerfile
       network: host
     restart: always
+    env_file: stack.env
     environment:
       DATABASE_CLIENT: postgres
       DATABASE_HOST: portfolio-db

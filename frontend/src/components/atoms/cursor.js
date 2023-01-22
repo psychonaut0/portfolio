@@ -52,7 +52,7 @@ export default function Cursor() {
 
   return (
     <motion.div
-      className="w-14 h-14 z-[999] flex justify-center items-center pointer-events-none border-2 border-white rounded-full fixed"
+      className="w-14 h-14 z-[999] hidden md:flex justify-center items-center pointer-events-none border-2 border-white rounded-full fixed"
       initial={false}
       id={'cursor'}
       animate={{

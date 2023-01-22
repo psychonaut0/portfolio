@@ -5,7 +5,7 @@ networks:
     external: true
 
 volumes:
-  portfolio-client
+  portfolio-client:
 
 services:
   portfolio-client:

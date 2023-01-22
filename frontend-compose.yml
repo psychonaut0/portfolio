@@ -4,12 +4,6 @@ networks:
   nginx-proxy-network:
     external: true
 
-volumes:
-  portfolio-client:
-    driver: local-persist
-    driver_opts:
-      mountpoint: /mnt/cloud/volumes/portfolio/client
-
 services:
   portfolio-client:
     build:

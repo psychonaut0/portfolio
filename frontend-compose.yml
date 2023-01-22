@@ -4,6 +4,9 @@ networks:
   nginx-proxy-network:
     external: true
 
+volumes:
+  portfolio-client
+
 services:
   portfolio-client:
     build:

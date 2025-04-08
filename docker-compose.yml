@@ -41,7 +41,7 @@ services:
   portfolio-db:
     image: postgres:12.0-alpine
     restart: always
-    env_file: .env
+    env_file: stack.env
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}

@@ -20,7 +20,7 @@ export default function Layout({ data, children }) {
         <Head>
           <meta
             name="google-site-verification"
-            content="O17C4dQ_Gi7GioyS_zffrLKDXP9wsadQrdbFU-ZYsjc"
+            content="FF6K-pMwc-sEPySjU3JYk3084HBnkDST07WrYdp5p2o"
           />
         </Head>
         <Seo data={data} />

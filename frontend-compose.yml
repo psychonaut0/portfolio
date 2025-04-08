@@ -15,6 +15,8 @@ services:
         NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
         STRAPI_TOKEN: ${STRAPI_TOKEN}
         NEXT_PUBLIC_WEBSITE_URL: ${NEXT_PUBLIC_WEBSITE_URL}
+    env_file:
+      - stack.env
     networks:
       - nginx-proxy-network
     restart: always

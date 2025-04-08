@@ -1,27 +1,27 @@
-import Navigation from "../sections/navigation"
-import Cursor from "../atoms/cursor"
-import Head from "next/head"
-import { useEffect, useState } from "react"
-import { useRouter } from "next/router"
-import Seo from "../configs/seo"
+import Navigation from "../sections/navigation";
+import Cursor from "../atoms/cursor";
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Seo from "../configs/seo";
 
 export default function Layout({ data, children }) {
-
-  const router = useRouter()
-  const [activePath, setactivePath] = useState('')
+  const router = useRouter();
+  const [activePath, setactivePath] = useState("");
 
   useEffect(() => {
-    setactivePath(router.asPath.replace('/', ''))
+    setactivePath(router.asPath.replace("/", ""));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-
+  }, []);
 
   return (
     <>
       <div className=" font-test-4 w-screen h-screen overflow-hidden animate-gradient">
         <Head>
-          <meta name="google-site-verification" content="O17C4dQ_Gi7GioyS_zffrLKDXP9wsadQrdbFU-ZYsjc" />
+          <meta
+            name="google-site-verification"
+            content="O17C4dQ_Gi7GioyS_zffrLKDXP9wsadQrdbFU-ZYsjc"
+          />
         </Head>
         <Seo data={data} />
         <Cursor />
@@ -31,5 +31,5 @@ export default function Layout({ data, children }) {
         </div>
       </div>
     </>
-  )
+  );
 }

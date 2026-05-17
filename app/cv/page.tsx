@@ -16,13 +16,26 @@ export default function CVPage() {
           EU-style one-pager. Senior full-stack engineer, 5+ years.
         </p>
       </header>
-      <p className="font-mono text-sm">
+      <p className="text-sm text-muted">
+        PDF coming soon. Meanwhile, see{" "}
         <a
-          href="/cv-eu.pdf"
+          href="https://www.linkedin.com/in/francesco-barbano"
+          target="_blank"
+          rel="noreferrer"
           className="underline decoration-hairline underline-offset-4 hover:decoration-accent"
         >
-          Download CV (PDF) ↗
+          LinkedIn
         </a>
+        {" "}or{" "}
+        <a
+          href="https://github.com/psychonaut0"
+          target="_blank"
+          rel="noreferrer"
+          className="underline decoration-hairline underline-offset-4 hover:decoration-accent"
+        >
+          GitHub
+        </a>
+        .
       </p>
       <p className="font-mono text-sm">
         <Link href="/" className="text-muted hover:text-accent">

@@ -1,4 +1,4 @@
-export type LinkKind = "email" | "linkedin" | "github" | "cv";
+export type LinkKind = "email" | "linkedin" | "github";
 
 export type Link = {
   kind: LinkKind;
@@ -53,11 +53,6 @@ export const profile: Profile = {
       kind: "github",
       label: "github.com/psychonaut0",
       href: "https://github.com/psychonaut0",
-    },
-    {
-      kind: "cv",
-      label: "CV",
-      href: "/cv",
     },
   ],
   experience: [

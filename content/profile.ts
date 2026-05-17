@@ -12,7 +12,6 @@ export type ExperienceEntry = {
   start: string;       // "Aug 2024"
   end: string | null;  // null = present
   bullets: string[];
-  current?: boolean;
 };
 
 export type CareerBreak = {
@@ -57,7 +56,7 @@ export const profile: Profile = {
     },
     {
       kind: "cv",
-      label: "CV (PDF)",
+      label: "CV",
       href: "/cv",
     },
   ],
@@ -67,7 +66,6 @@ export const profile: Profile = {
       company: "Travelware",
       start: "Aug 2024",
       end: null,
-      current: true,
       bullets: [
         "Scalable travel platform, 6-engineer team, Next.js with distributed microservices (REST + WebSockets) across 10+ repositories.",
         "Interactive map module: real-time rendering of millions of geographic records via PostGIS spatial indexing + query tuning.",

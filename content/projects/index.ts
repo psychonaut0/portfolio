@@ -14,4 +14,4 @@ export type ProjectMeta = {
   demo?: string;
 };
 
-export const projects: ProjectMeta[] = [portfolio, cvRenderer];
+export const projects: ProjectMeta[] = [portfolio as ProjectMeta, cvRenderer as ProjectMeta];

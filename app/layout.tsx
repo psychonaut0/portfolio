@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "Francesco Barbano",
     images: [{ url: "/og-default.png", width: 1200, height: 630 }],
-    locale: "en",
+    locale: "en_US",
     type: "website",
   },
   robots: { index: true, follow: true },

@@ -1,0 +1,49 @@
+export const meta = {
+  title: "Home-lab fleet & infra CLI",
+  slug: "infra",
+  summary:
+    "Self-hosted multi-host platform behind a custom Go CLI with its own CI/CD and LAN release mirror.",
+  stack: [
+    "Go",
+    "Proxmox",
+    "LXC",
+    "Docker Compose",
+    "systemd",
+    "Caddy",
+    "Pi-hole",
+    "Cloudflare Tunnel",
+    "Restic + B2",
+    "Gatus",
+  ],
+  role: "Solo",
+  year: 2026,
+  order: 30,
+  featured: true,
+  repo: "https://github.com/psychonaut0/infra",
+};
+
+A small self-hosted platform: a two-node Proxmox cluster running a dozen single-purpose LXC containers (DNS, media, photos, files, NVR, home automation, game servers, this portfolio, and more), plus a Go CLI (`infra`) that wraps the operator surface so day-to-day work doesn't fall back to raw SSH.
+
+## Problem
+
+Self-hosting a real set of services at home is easy to start and expensive to maintain. A single box with a dozen tangled compose files becomes a liability the moment something breaks: no story for fleet operations, no DNS automation, no monitoring, no backups, no release pipeline for the tooling itself. I wanted something closer to a tiny ops platform: explicit service boundaries, one deploy descriptor per service, a single command for the routine work, and proper observability.
+
+## Approach
+
+Hardware sits on a two-node Proxmox cluster (a 6C/12T Intel + an N100 mini), with bulk storage on the heavier node exposed to the lighter one via PVE bind-mounts. Every service is its own unprivileged LXC running a Docker Compose stack scoped to that service — one container per CT, single responsibility. CTs that need shared storage (media, photos) bind-mount a mergerfs pool from the host; CTs that need device passthrough (iGPU for transcoding/ML, USB peripherals) get upgraded to privileged with explicit `cgroup2.devices.allow` rules and `/dev/dri` bind mounts.
+
+The operator surface is a Go CLI, `infra`, that maps "what's the box and what runs there" to the actions you actually want: `infra ls`, `infra status`, `infra logs <svc>`, `infra restart <svc>`, `infra deploy <svc|ct>`, `infra dns add foo.lan http://1.2.3.4:5678`, `infra ct status`. Deploy does a tar-streamed sync of the local `stacks/<ct>/` tree to `/opt/stacks/<ct>/` on the target CT and runs `docker compose up -d --force-recreate`. DNS adds wire Caddy *and* Pi-hole in a single transaction; `infra dns sync` reconciles drift between the two. The CLI itself ships through its own pipeline: GitHub Actions on tag → GitHub Releases → a LAN release mirror running as a systemd timer that re-publishes the artifact at `http://infra-bin.lan`. Fresh hosts bootstrap with `curl -fsSL http://infra-bin.lan/install.sh | sh`; everything else self-updates with `infra update`.
+
+Inbound is layered. A static public IP terminates on a UniFi gateway behind the ISP router in DMZ-host mode. Public HTTP(S) endpoints go through a Cloudflare Tunnel running in a tiny CT — replacing an older nginx-proxy-manager + DDNS + port-forward setup. A single deliberate UniFi port-forward covers the one TCP game endpoint that can't reasonably go through Cloudflare. Everything else stays LAN-only behind Caddy at `*.lan`, with Pi-hole resolving those names locally.
+
+Backups are restic-based: a dedicated backup CT runs nightly against Backblaze B2, pulling `.env` files, Docker named volumes, an Immich Postgres dump, `/etc/pve`, and bind-mounted bulk data — over SSH with forced-command restrictions per target. Telegram alerts on completion; weekly prune; monthly partial check.
+
+Monitoring is Gatus with three tiers (critical / important / background) and the same Telegram bot for alerts; a custom Preact + Bun SSR dashboard sits beside it, exposing live PVE resource stats and per-service health.
+
+## Stack
+
+`Go (CLI)` · `Proxmox VE` · `LXC` · `Docker Compose` · `systemd` · `Caddy` · `Pi-hole` · `Cloudflare Tunnel` · `Restic + B2` · `Gatus` · `Preact + Bun (dashboard)`
+
+## Outcome
+
+Adding a new service is: clone the LXC template, drop a `stacks/<ct>/docker-compose.yml` into the infra repo, `infra deploy <ct>`, `infra dns add <name>.lan http://…`. Rolling a single service forward or back is a one-line image-tag bump — this portfolio site itself is pinned to `ghcr.io/psychonaut0/portfolio:sha-<short>` and rolled exactly this way. Public exposure for a new endpoint is one cloudflared config-tunnel line. Design specs, CLI source, every stack's compose file, and the deploy automation all live in the same repo.

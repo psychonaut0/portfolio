@@ -1,0 +1,29 @@
+export const meta = {
+  title: "CV renderer",
+  slug: "cv-renderer",
+  summary:
+    "One-page EU/IT CV rendered from hand-maintained HTML to PDF with WeasyPrint, built and versioned alongside the source.",
+  stack: ["HTML", "CSS", "WeasyPrint", "Python", "Bash"],
+  role: "Solo",
+  year: 2026,
+  order: 10,
+  featured: true,
+};
+
+A small dual-language CV pipeline: two parallel single-file HTML documents (`cv-eu.html`, `cv-it.html`) rendered to A4 PDFs by WeasyPrint, with both source and built PDFs checked in so the source-of-truth stays consistent.
+
+## Problem
+
+I rewrite my CV often enough that maintaining it in a Word/Pages file felt wrong, but most "developer CV" templates over-engineer the build (full LaTeX, Tailwind-in-Puppeteer, single-page React) and produce documents that look like a developer ran a build for them. I wanted plain HTML, semantic markup, real typography, and a one-step `./build.sh` to produce both language variants.
+
+## Approach
+
+`@page { size: A4; margin: 0 }` plus a fixed `.page` width drives WeasyPrint's pagination — the document is designed to fit on a single A4 page, so any added content has to be offset by trimming elsewhere. Icons are inline SVGs (Feather set for contact, brand marks for LinkedIn/GitHub) so there are no external image dependencies at build time except Google Fonts (DM Sans titles, Lato body). Each language variant is hand-maintained — any content change to one almost always requires a mirrored change to the other; diverged-on-purpose lines (GDPR clause, unit suffixes, English-level phrasing) live in a small table in the README.
+
+## Stack
+
+`HTML` · `CSS (print)` · `WeasyPrint` · `Python` · `Bash`
+
+## Outcome
+
+`./build.sh` produces both PDFs in a few seconds. The repo is small enough that the editorial decisions log (which metrics to keep vs. drop, framing of team role, "AI-augmented" wording, no formal degree disclosure) sits alongside the source as `README.md § Review Decisions`.

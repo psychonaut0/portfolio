@@ -1,0 +1,33 @@
+export const meta = {
+  title: "Portfolio site",
+  slug: "portfolio",
+  summary:
+    "Next.js 16 standalone build, multi-stage Dockerfile, GHCR CI, deployed to the home-lab fleet.",
+  stack: ["Next.js 16", "TypeScript", "Tailwind v4", "Docker", "GHCR", "MDX"],
+  role: "Solo",
+  year: 2026,
+  order: 20,
+  featured: true,
+  repo: "https://github.com/psychonaut0/portfolio",
+  demo: "https://portfolio.ncsp.dev",
+};
+
+This site. A statically rendered Next.js 16 App Router app, built to a standalone Node bundle, packaged as a small Alpine image, and deployed to my home-lab fleet via GHCR.
+
+## Problem
+
+I needed a public surface that matches the CV — a senior full-stack engineer with an AI-tooling specialisation — and that I could keep maintaining for the next several years without trend-chasing. The previous version (`portfolio.sniffer.zip`) wasn't honest about the current stack and didn't have room for project case studies.
+
+## Approach
+
+The site is content-first: a single typed module for profile/experience copy, MDX files for each project, and a hand-maintained manifest so the loader is a pure function over a static array. Pages are server-rendered with zero client JS by default; the only dynamic-feeling thing is the system-pref colour scheme switch via CSS variables.
+
+The container build is multi-stage on `node:22-alpine`: deps install in one stage, the standalone output is produced in a builder stage, the runner stage copies only `.next/standalone`, `.next/static`, and `public/` into a non-root image. CI on push to `main` builds and pushes `:latest` + `:sha-<short>` to GHCR; tagged releases push `:vX.Y.Z`. Deploy is pinned by image tag in a separate infra repo.
+
+## Stack
+
+`Next.js 16` · `React 19` · `TypeScript` · `Tailwind v4` · `@next/mdx` · `Docker (multi-stage)` · `GHCR` · `GitHub Actions`
+
+## Outcome
+
+The site builds in under a minute, the image is a few tens of megabytes, the home page ships effectively no client JS. New project case studies are a one-file change (`content/projects/<slug>.mdx`) plus a one-line manifest entry.

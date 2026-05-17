@@ -9,8 +9,8 @@ export function ContactList({ links }: ContactListProps) {
     <ul className="font-mono text-sm space-y-1">
       {links.map((link) => (
         <li key={link.kind}>
-          <span className="text-muted">{link.kind}</span>
-          <span className="text-muted"> · </span>
+          <span aria-hidden="true" className="text-muted">{link.kind}</span>
+          <span aria-hidden="true" className="text-muted"> · </span>
           <a
             href={link.href}
             className="underline decoration-hairline underline-offset-4 hover:decoration-accent"
